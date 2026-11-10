@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try Out TKA SD Matematika - System CBT Anti-Curang</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .no-select {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        @keyframes alertPulse {
+            0%, 100% { background-color: #fef2f2; border-color: #ef4444; }
+            50% { background-color: #fee2e2; border-color: #dc2626; }
+        }
+        .timer-warning {
+            animation: alertPulse 1.5s infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 min-h-screen flex flex-col no-select" oncontextmenu="return false;" oncopy="return false;" onpaste="return false;" oncut="return false;">
+
+    <!-- PAGE 1: LOGIN PAGE -->
+    <div id="login-page" class="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-blue-900 via-indigo-900 to-slate-900">
+        <div class="max-w-md w-full bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden">
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-700 p-6 text-white text-center relative">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-white/10 rounded-full mb-3 backdrop-blur-md">
+                    <i class="fa-solid fa-graduation-cap text-3xl text-yellow-300"></i>
+                </div>
+                <h1 class="text-2xl font-extrabold tracking-tight">TRY OUT TKA SD</h1>
+                <p class="text-xs text-blue-100 mt-1 uppercase tracking-wider font-semibold">Asesmen Matematika SD/MI</p>
+                <div class="mt-3 inline-block bg-red-800/80 text-xs text-red-200 px-3 py-1 rounded-full border border-red-400/40 font-bold">
+                    <i class="fa-solid fa-shield-cat text-yellow-300 mr-1"></i> Mode Anti-Curang Ketat (Diskualifikasi Otomatis)
+                </div>
+            </div>
+
+            <form id="form-login" onsubmit="handleLogin(event)" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nama Lengkap Peserta</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+                        <input type="text" id="input-nama" required placeholder="Masukkan Nama Lengkap"
+                            class="w-full pl-10 pr-4 py-2.5 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Asal Lembaga / Sekolah</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                            <i class="fa-solid fa-school"></i>
+                        </span>
+                        <input type="text" id="input-lembaga" required placeholder="Contoh: SD Negeri 1 Nusantara"
+                            class="w-full pl-10 pr-4 py-2.5 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Tanggal Lahir</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                            <i class="fa-solid fa-calendar-days"></i>
+                        </span>
+                        <input type="date" id="input-tgllahir" required
+                            class="w-full pl-10 pr-4 py-2.5 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Token Ujian</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                            <i class="fa-solid fa-key"></i>
+                        </span>
+                        <input type="text" id="input-token" required placeholder="Masukkan Token (GUSLAH1)" uppercase
+                            class="w-full pl-10 pr-4 py-2.5 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none uppercase font-bold tracking-wider text-slate-800 transition">
+                    </div>
+                    <p id="token-error" class="hidden text-xs text-red-600 mt-1 font-semibold flex items-center">
+                        <i class="fa-solid fa-circle-exclamation mr-1"></i> Token tidak valid! Gunakan token GUSLAH1.
+                    </p>
+                </div>
+
+                <div class="p-3 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-800 space-y-1">
+                    <p class="font-bold flex items-center text-amber-900">
+                        <i class="fa-solid fa-triangle-exclamation text-amber-600 mr-1.5 text-sm"></i> Petunjuk Penting:
+                    </p>
+                    <ul class="list-disc list-inside space-y-0.5 pl-1 text-[11px] text-amber-800">
+                        <li>Ujian terdiri dari <strong>30 Soal</strong> dengan durasi <strong>75 Menit</strong>.</li>
+                        <li>Sistem otomatis masuk ke mode <strong>Layar Penuh (Fullscreen)</strong>.</li>
+                        <li><strong class="text-red-700 uppercase">Peringatan:</strong> Berpindah tab, keluar dari layar penuh, atau membuka aplikasi lain akan <strong>LANGSUNG MEMBATALKAN UJIAN</strong>!</li>
+                    </ul>
+                </div>
+
+                <button type="submit" class="w-full py-3 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition duration-200 flex items-center justify-center space-x-2">
+                    <span>MULAI UJIAN SEKARANG</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- PAGE 2: EXAM WORKSPACE -->
+    <div id="exam-page" class="hidden min-h-screen flex flex-col bg-slate-100">
+        <header class="bg-blue-900 text-white shadow-md sticky top-0 z-30">
+            <div class="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-blue-700 rounded-lg flex items-center justify-center font-bold text-lg text-yellow-300 shadow">
+                        <i class="fa-solid fa-calculator"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-sm font-bold tracking-tight leading-tight" id="header-nama">Nama Peserta</h2>
+                        <p class="text-xs text-blue-200" id="header-lembaga">Nama Lembaga</p>
+                    </div>
+                </div>
+
+                <div id="timer-box" class="bg-slate-900/80 px-4 py-1.5 rounded-xl border border-blue-400/30 flex items-center space-x-3 shadow-inner">
+                    <i class="fa-regular fa-clock text-amber-400 text-lg animate-pulse"></i>
+                    <div>
+                        <div class="text-[10px] text-slate-400 uppercase font-semibold tracking-wider">Sisa Waktu</div>
+                        <div id="timer-display" class="text-lg font-black font-mono tracking-wider text-yellow-300 leading-none">75:00</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-3">
+                    <div class="flex items-center bg-red-950/80 text-red-300 border border-red-700 px-3 py-1 rounded-full text-xs font-semibold">
+                        <i class="fa-solid fa-shield-virus mr-1.5 text-red-400 animate-pulse"></i>
+                        <span>Mode Ketat Aktif</span>
+                    </div>
+
+                    <button onclick="requestFullscreen()" class="hidden md:flex items-center space-x-1 bg-blue-800 hover:bg-blue-700 text-xs px-2.5 py-1.5 rounded border border-blue-600 transition">
+                        <i class="fa-solid fa-expand"></i>
+                        <span>Fullscreen</span>
+                    </button>
+
+                    <button onclick="toggleSidebar()" class="lg:hidden bg-blue-800 hover:bg-blue-700 text-white p-2 rounded-lg">
+                        <i class="fa-solid fa-th-large text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="flex-1 max-w-7xl w-full mx-auto p-3 md:p-5 flex flex-col lg:flex-row gap-5">
+            <main class="flex-1 bg-white rounded-xl shadow-sm border border-slate-200 flex flex-col overflow-hidden">
+                <div class="bg-slate-50 px-5 py-3 border-b border-slate-200 flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <span class="bg-blue-600 text-white font-black text-sm px-3 py-1 rounded-md shadow-sm">
+                            SOAL NO. <span id="q-number-display">1</span>
+                        </span>
+                        <span id="q-type-badge" class="bg-slate-200 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-md uppercase">
+                            Pilihan Ganda
+                        </span>
+                    </div>
+                    <div class="text-xs text-slate-500">
+                        Bobot Soal: <span class="font-bold text-slate-700"> Standar TKA</span>
+                    </div>
+                </div>
+
+                <div class="p-5 md:p-6 overflow-y-auto flex-1 space-y-5" id="question-content-box">
+                    <div id="stimulus-container" class="bg-blue-50/60 border border-blue-100 rounded-xl p-4 text-slate-800 text-sm leading-relaxed space-y-3">
+                        <h4 class="font-bold text-blue-900 text-xs uppercase tracking-wider flex items-center">
+                            <i class="fa-solid fa-circle-info mr-1.5 text-blue-600"></i> Stimulus / Teks Informasi
+                        </h4>
+                        <div id="stimulus-text" class="prose prose-sm max-w-none"></div>
+                        <div id="stimulus-table" class="overflow-x-auto mt-2"></div>
+                    </div>
+
+                    <div id="svg-container" class="hidden flex flex-col items-center justify-center p-4 bg-slate-50 border border-slate-200 rounded-xl"></div>
+
+                    <div class="pt-2 border-t border-slate-100">
+                        <h3 id="question-text" class="text-base font-bold text-slate-900 leading-snug">
+                            Loading pertanyaan...
+                        </h3>
+                    </div>
+
+                    <div id="answer-options-container" class="pt-2"></div>
+                </div>
+
+                <div class="bg-slate-50 p-4 border-t border-slate-200 flex items-center justify-between flex-wrap gap-2">
+                    <button id="btn-prev" onclick="navigateQuestion(-1)" class="px-4 py-2 bg-white border border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold text-sm rounded-lg shadow-sm transition flex items-center space-x-1.5 disabled:opacity-40 disabled:cursor-not-allowed">
+                        <i class="fa-solid fa-chevron-left text-xs"></i>
+                        <span>Sebelumnya</span>
+                    </button>
+
+                    <label class="inline-flex items-center bg-amber-100/80 border border-amber-300 px-3 py-2 rounded-lg cursor-pointer hover:bg-amber-200/80 transition select-none">
+                        <input type="checkbox" id="chk-doubtful" onchange="toggleDoubtful()" class="w-4 h-4 text-amber-600 rounded border-slate-300 focus:ring-amber-500">
+                        <span class="ml-2 text-xs font-bold text-amber-900 flex items-center">
+                            <i class="fa-solid fa-bookmark text-amber-600 mr-1"></i> Ragu-Ragu
+                        </span>
+                    </label>
+
+                    <div class="flex items-center space-x-2">
+                        <button id="btn-next" onclick="navigateQuestion(1)" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-lg shadow transition flex items-center space-x-1.5">
+                            <span>Selanjutnya</span>
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                        
+                        <button id="btn-submit-exam" onclick="confirmSubmitExam()" class="hidden px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-lg shadow transition flex items-center space-x-1.5">
+                            <i class="fa-solid fa-paper-plane text-xs"></i>
+                            <span>Kumpulkan Ujian</span>
+                        </button>
+                    </div>
+                </div>
+            </main>
+
+            <aside id="sidebar-map" class="w-full lg:w-80 bg-white rounded-xl shadow-sm border border-slate-200 p-4 flex flex-col space-y-4">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                    <h3 class="font-bold text-slate-800 text-sm flex items-center">
+                        <i class="fa-solid fa-th text-blue-600 mr-2"></i> Navigasi Soal
+                    </h3>
+                    <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-semibold">30 Soal</span>
+                </div>
+
+                <div class="grid grid-cols-3 gap-1.5 text-[11px] text-slate-600 font-semibold bg-slate-50 p-2.5 rounded-lg border border-slate-200">
+                    <div class="flex items-center space-x-1.5">
+                        <span class="w-3 h-3 bg-emerald-500 rounded-sm inline-block"></span>
+                        <span>Dijawab</span>
+                    </div>
+                    <div class="flex items-center space-x-1.5">
+                        <span class="w-3 h-3 bg-amber-400 rounded-sm inline-block"></span>
+                        <span>Ragu-ragu</span>
+                    </div>
+                    <div class="flex items-center space-x-1.5">
+                        <span class="w-3 h-3 bg-slate-200 border border-slate-300 rounded-sm inline-block"></span>
+                        <span>Belum</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-5 gap-2 overflow-y-auto max-h-[380px] p-1" id="question-grid"></div>
+
+                <div class="pt-3 border-t border-slate-100 mt-auto">
+                    <button onclick="confirmSubmitExam()" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-extrabold rounded-lg shadow-md transition flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-check-double"></i>
+                        <span>SELESAIKAN UJIAN</span>
+                    </button>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- PAGE 3: RESULT SUMMARY -->
+    <div id="result-page" class="hidden min-h-screen bg-slate-900 text-slate-100 p-4 md:p-8 flex items-center justify-center">
+        <div class="max-w-3xl w-full bg-slate-800 border border-slate-700 rounded-2xl shadow-2xl overflow-hidden space-y-6">
+            <div class="bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-800 p-6 text-center relative">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-white/10 rounded-full mb-2 backdrop-blur-md">
+                    <i class="fa-solid fa-award text-4xl text-yellow-300"></i>
+                </div>
+                <h1 class="text-2xl md:text-3xl font-black text-white">HASIL TRY OUT TKA SD MATEMATIKA</h1>
+                <p class="text-xs text-blue-200 mt-1 uppercase font-semibold">Laporan Resmi Hasil Evaluasi Peserta</p>
+            </div>
+
+            <div class="p-6 md:p-8 space-y-6">
+                <div class="bg-slate-700/50 border border-slate-600 rounded-xl p-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                    <div>
+                        <span class="text-slate-400 block uppercase">Nama Peserta:</span>
+                        <strong class="text-sm text-white" id="res-nama">-</strong>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block uppercase">Asal Lembaga/Sekolah:</span>
+                        <strong class="text-sm text-white" id="res-lembaga">-</strong>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block uppercase">Tanggal Lahir:</span>
+                        <strong class="text-sm text-white" id="res-tgllahir">-</strong>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block uppercase">Waktu Penyelesaian:</span>
+                        <strong class="text-sm text-white" id="res-waktu">-</strong>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-2xl p-6 text-center shadow-inner relative overflow-hidden">
+                    <div class="text-xs uppercase text-slate-400 font-bold tracking-widest mb-1">NILAI AKHIR EVALUASI</div>
+                    <div id="res-score" class="text-6xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-amber-200 my-2">0.0</div>
+                    <div id="res-grade-badge" class="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-900 text-blue-200 border border-blue-500">
+                        Kategori Predikat
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div class="bg-slate-700/40 border border-slate-600 p-3 rounded-xl text-center">
+                        <i class="fa-solid fa-circle-check text-emerald-400 text-xl mb-1"></i>
+                        <div class="text-xl font-bold text-emerald-300" id="res-correct">0</div>
+                        <div class="text-[11px] text-slate-400 font-semibold">Jawaban Benar</div>
+                    </div>
+                    <div class="bg-slate-700/40 border border-slate-600 p-3 rounded-xl text-center">
+                        <i class="fa-solid fa-circle-xmark text-red-400 text-xl mb-1"></i>
+                        <div class="text-xl font-bold text-red-300" id="res-wrong">0</div>
+                        <div class="text-[11px] text-slate-400 font-semibold">Jawaban Salah</div>
+                    </div>
+                    <div class="bg-slate-700/40 border border-slate-600 p-3 rounded-xl text-center">
+                        <i class="fa-solid fa-circle-minus text-amber-400 text-xl mb-1"></i>
+                        <div class="text-xl font-bold text-amber-300" id="res-unanswered">0</div>
+                        <div class="text-[11px] text-slate-400 font-semibold">Kosong / Ragu</div>
+                    </div>
+                    <div class="bg-slate-700/40 border border-slate-600 p-3 rounded-xl text-center">
+                        <i class="fa-solid fa-cloud-arrow-up text-blue-400 text-xl mb-1"></i>
+                        <div class="text-xs font-bold text-blue-300 mt-1" id="res-sync-status">Tersimpan ke Sheets</div>
+                        <div class="text-[11px] text-slate-400 font-semibold">Status Server</div>
+                    </div>
+                </div>
+
+                <div class="bg-blue-950/50 border border-blue-800/60 p-4 rounded-xl text-xs text-blue-200 space-y-1">
+                    <p class="font-bold text-blue-300 flex items-center">
+                        <i class="fa-solid fa-certificate text-yellow-400 mr-2"></i> Verifikasi Sistem Evaluasi:
+                    </p>
+                    <p class="text-slate-300 leading-relaxed">
+                        Data nilai dan rekaman integritas ujian telah disimpan secara otomatis di database server ujian.
+                    </p>
+                </div>
+
+                <div class="pt-2">
+                    <button onclick="safePrint()" class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-lg transition flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-print"></i>
+                        <span>CETAK BUKTI HASIL UJIAN</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CONFIRM SUBMIT -->
+    <div id="modal-submit" class="hidden fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-100 text-slate-800 space-y-4">
+            <div class="text-center">
+                <div class="w-14 h-14 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
+                    <i class="fa-solid fa-circle-question"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900">Konfirmasi Selesai Ujian</h3>
+                <p class="text-xs text-slate-500 mt-1">Apakah Anda yakin ingin mengumpulkan seluruh lembar jawaban?</p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs space-y-1.5 font-medium">
+                <div class="flex justify-between">
+                    <span class="text-slate-600">Total Soal:</span>
+                    <strong class="text-slate-800">30 Soal</strong>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-emerald-600">Sudah Dijawab:</span>
+                    <strong class="text-emerald-700" id="modal-answered-count">0</strong>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-amber-600">Ditandai Ragu-Ragu:</span>
+                    <strong class="text-amber-700" id="modal-doubtful-count">0</strong>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-red-600">Belum Dijawab:</span>
+                    <strong class="text-red-700" id="modal-unanswered-count">0</strong>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 pt-2">
+                <button onclick="closeSubmitModal()" class="py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs rounded-lg transition">
+                    Kembali Mengerjakan
+                </button>
+                <button onclick="submitExamNow()" class="py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-lg transition shadow">
+                    Ya, Kumpulkan
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT LOGIC -->
+    <script>
+        // ==================== CONFIGURATION ====================
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwjnVrvwebIjb8oq_DzZcevpCsg5n4wij_OfmLSZBjunpeU2ydbNXiEEmlim9_fbUmYUA/exec"; 
+
+        // ==================== QUESTIONS DATABASE (SESUAI DOKUMEN WORD UTUH) ====================
+        const questionsData = [
+            {
+                id: 1, type: 'mcma', title: 'Ketinggian Tempat Liburan Bagas',
+                stimulusText: 'Bagas mencatat ketinggian beberapa tempat yang ia kunjungi bersama keluarganya saat berlibur. Ketinggian tempat diukur terhadap permukaan laut (0 meter). Tempat di atas permukaan laut bernilai positif (+), sedangkan tempat di bawah permukaan laut bernilai negatif (-).<br><br>Berikut adalah data catatan ketinggian tempat yang dikunjungi Bagas:',
+                stimulusTable: `<table class="w-full text-xs text-left border-collapse border border-slate-300"><thead><tr class="bg-blue-100 text-blue-900 border-b border-slate-300"><th class="p-2 border text-center">No.</th><th class="p-2 border">Tempat yang Dikunjungi</th><th class="p-2 border">Ketinggian terhadap Permukaan Laut</th></tr></thead><tbody><tr class="border-b"><td class="p-2 border text-center">1.</td><td class="p-2 border">Puncak Bukit Pandang</td><td class="p-2 border">45 meter di atas permukaan laut (+45 m)</td></tr><tr class="border-b"><td class="p-2 border text-center">2.</td><td class="p-2 border">Rest Area Pantai</td><td class="p-2 border">Tepat di permukaan laut (0 m)</td></tr><tr class="border-b"><td class="p-2 border text-center">3.</td><td class="p-2 border">Perkemahan Lembah</td><td class="p-2 border">10 meter di bawah permukaan laut (-10 m)</td></tr><tr><td class="p-2 border text-center">4.</td><td class="p-2 border">Spot Penyelaman Laut</td><td class="p-2 border">35 meter di bawah permukaan laut (-35 m)</td></tr></tbody></table>`,
+                questionText: 'Berdasarkan data ketinggian tempat di atas, berilah tanda centang (✓) pada setiap pernyataan yang benar! (Jawaban benar lebih dari satu)',
+                options: [
+                    { id: 'A', text: 'Tempat yang terletak pada posisi paling tinggi adalah Puncak Bukit Pandang (45 m).' },
+                    { id: 'B', text: 'Tempat yang terletak pada posisi paling rendah adalah Spot Penyelaman Laut (-35 m).' },
+                    { id: 'C', text: 'Perkemahan Lembah (-10 m) berada di posisi yang lebih rendah daripada Spot Penyelaman Laut (-35 m).' }
+                ],
+                correct: ['A', 'B']
+            },
+            {
+                id: 2, type: 'pg', title: 'Festival Budaya Musim Kemarau',
+                stimulusText: 'Pada bulan Agustus, beberapa daerah di Indonesia menggelar festival budaya tahunan. Karena berlangsung pada puncak musim kemarau di kawasan dataran tinggi, suhu udara pada malam hari di tempat pelaksanaan festival terasa sangat dingin, bahkan ada yang mencapai di bawah 0°C.<br><br>Berikut adalah data pencatatan suhu udara rata-rata pada malam hari di beberapa lokasi festival budaya:',
+                stimulusTable: `<table class="w-full text-xs text-left border-collapse border border-slate-300"><thead><tr class="bg-blue-100 text-blue-900"><th class="p-2 border text-center">No.</th><th class="p-2 border">Nama Festival Budaya</th><th class="p-2 border">Lokasi Daerah</th><th class="p-2 border">Suhu Udara Malam Hari</th></tr></thead><tbody><tr><td class="p-2 border text-center">1.</td><td class="p-2 border">Dieng Culture Festival</td><td class="p-2 border">Dataran Tinggi Dieng, Jawa Tengah</td><td class="p-2 border font-bold">2°C</td></tr><tr><td class="p-2 border text-center">2.</td><td class="p-2 border">Festival Adat Karo</td><td class="p-2 border">Desa Ranupani (Kaki Gunung Bromo), Jawa Timur</td><td class="p-2 border font-bold">-3°C</td></tr><tr><td class="p-2 border text-center">3.</td><td class="p-2 border">Festival Budaya Lembah Baliem</td><td class="p-2 border">Jayawijaya, Papua Pegunungan</td><td class="p-2 border font-bold">8°C</td></tr><tr><td class="p-2 border text-center">4.</td><td class="p-2 border">Festival Bunga dan Buah</td><td class="p-2 border">Berastagi, Sumatera Utara</td><td class="p-2 border font-bold">14°C</td></tr></tbody></table>`,
+                questionText: 'Berdasarkan data tabel di atas, selisih suhu udara pada malam hari antara lokasi pelaksanaan Dieng Culture Festival dan Festival Adat Karo di Desa Ranupani adalah ....',
+                options: [{ id: 'A', text: '1°C' }, { id: 'B', text: '5°C' }, { id: 'C', text: '6°C' }, { id: 'D', text: '8°C' }],
+                correct: 'B'
+            },
+            {
+                id: 3, type: 'kategori', title: 'Pengamatan Suhu Udara Stasiun Penelitian Kutub',
+                stimulusText: 'Seorang peneliti di Stasiun Penelitian Kriosfer mencatat suhu udara luar ruangan setiap pukul 06.00 pagi selama 5 hari berturut-turut untuk menganalisis perubahan cuaca lokal.<br><br>Data hasil pengamatan suhu udara disajikan pada tabel berikut:',
+                stimulusTable: `<table class="w-3/4 mx-auto text-xs text-left border-collapse border border-slate-300"><thead><tr class="bg-blue-100 text-blue-900"><th class="p-2 border">Hari</th><th class="p-2 border">Suhu Udara (°C)</th></tr></thead><tbody><tr><td class="p-2 border">Senin</td><td class="p-2 border font-bold">-4</td></tr><tr><td class="p-2 border">Selasa</td><td class="p-2 border font-bold">-8</td></tr><tr><td class="p-2 border">Rabu</td><td class="p-2 border font-bold">2</td></tr><tr><td class="p-2 border">Kamis</td><td class="p-2 border font-bold">-1</td></tr><tr><td class="p-2 border">Jumat</td><td class="p-2 border font-bold">-5</td></tr></tbody></table>`,
+                questionText: 'Berdasarkan data pengamatan di atas, tentukan kategori Benar atau Salah untuk setiap kesimpulan/pernyataan berikut dengan memberikan tanda centang (✓) pada kolom yang sesuai!',
+                colHeaders: ['Benar', 'Salah'],
+                categories: [
+                    'Hari Selasa merupakan hari dengan suhu paling dingin (terendah) selama lima hari pengamatan.',
+                    'Suhu pada hari Senin (-4°C) lebih tinggi daripada suhu pada hari Kamis (-1°C).',
+                    'Urutan hari dari yang suhunya paling hangat (tertinggi) hingga paling dingin (terendah) adalah Rabu, Kamis, Senin, Jumat, dan Selasa.'
+                ],
+                correct: ['Benar', 'Salah', 'Benar']
+            },
+            {
+                id: 4, type: 'pg', title: 'Cokelat Dina',
+                stimulusText: 'Dina membeli sebuah cokelat batangan setelah pulang sekolah. Cokelat tersebut dibagi menjadi 6 potong sama besar. Dina memakan 2 potong cokelat tersebut seperti yang ditunjukkan pada gambar berikut:<br><br>Bagian cokelat yang telah dimakan Dina dapat dinyatakan dalam bentuk pecahan 2/6.', svgType: 'chocolate',
+                questionText: 'Pecahan berikut yang senilai dengan bagian cokelat yang telah dimakan Dina adalah ....',
+                options: [{ id: 'A', text: '1/3' }, { id: 'B', text: '1/4' }, { id: 'C', text: '2/3' }, { id: 'D', text: '3/4' }],
+                correct: 'A'
+            },
+            {
+                id: 5, type: 'mcma', title: 'Tradisi Kerja Bakti di Desa Sukamaju',
+                stimulusText: 'Warga Desa Sukamaju mengadakan kegiatan kerja bakti tahunan untuk membersihkan balai desa dan lingkungan sekitar. Untuk menyambut warga yang bergotong royong, ibu-ibu menyiapkan sajian kue lapis tradisional. Ibu Ani memotong 1 loyang kue lapis menjadi 12 bagian yang sama besar. Sebanyak 4 potong kue disajikan di meja konsumsi untuk warga yang sedang beristirahat.<br><br>Bagian kue lapis yang disajikan di meja konsumsi tersebut bernilai 4/12.', svgType: 'layercake',
+                questionText: 'Pilihlah semua bentuk pecahan di bawah ini yang senilai dengan representasi bagian kue lapis yang disajikan Ibu Ani! (Jawaban benar lebih dari satu)',
+                options: [{ id: 'A', text: '1/3' }, { id: 'B', text: '3/4' }, { id: 'C', text: '8/24' }],
+                correct: ['A', 'C']
+            },
+            {
+                id: 6, type: 'mcma', title: 'Percobaan Larutan Kimia di Laboratorium Sekolah',
+                stimulusText: 'Siswa kelas 5 sedang melakukan pengamatan volume larutan warna dalam empat wadah pengukur yang kapasitasnya identik. Hasil pengukuran bagian isi larutan pada masing-masing wadah dicatat dalam tabel berikut:',
+                stimulusTable: `<table class="w-3/4 mx-auto text-xs text-left border-collapse border border-slate-300"><thead><tr class="bg-blue-100 text-blue-900"><th class="p-2 border">Nama Wadah</th><th class="p-2 border">Fraksi Volume Larutan</th></tr></thead><tbody><tr><td class="p-2 border">Wadah P</td><td class="p-2 border font-bold">3/4</td></tr><tr><td class="p-2 border">Wadah Q</td><td class="p-2 border font-bold">4/6</td></tr><tr><td class="p-2 border">Wadah R</td><td class="p-2 border font-bold">6/8</td></tr><tr><td class="p-2 border">Wadah S</td><td class="p-2 border font-bold">8/12</td></tr></tbody></table>`,
+                questionText: 'Berdasarkan data hasil pengamatan laboratorium di atas, berilah tanda centang (✓) pada semua pernyataan yang bernalar dan bernilai benar mengenai pasangan pecahan setara! (Jawaban benar lebih dari satu)',
+                options: [
+                    { id: 'A', text: 'Larutan pada Wadah P (3/4) dan Wadah R (6/8) bernilai setara (senilai) karena jika pembilang dan penyebut 3/4 masing-masing dikalikan 2, maka menghasilkan pecahan 6/8.' },
+                    { id: 'B', text: 'Larutan pada Wadah Q (4/6) dan Wadah S (8/12) bernilai setara (senilai) karena jika kedua pecahan disederhanakan dengan membagi pembilang dan penyebutnya dengan faktor persekutuan terbesarnya, keduanya bernilai 2/3.' },
+                    { id: 'C', text: 'Larutan pada Wadah P (3/4) dan Wadah S (8/12) bernilai setara (senilai) karena pembilang kedua pecahan sama-sama merupakan bilangan bulat positif.' }
+                ],
+                correct: ['A', 'B']
+            },
+            {
+                id: 7, type: 'pg', title: 'Membeli Persediaan Buah Harian',
+                stimulusText: 'Kakak pergi ke minimarket untuk membeli persediaan buah harian. Pertama, Kakak membeli 2 1/2 kg apel. Selanjutnya, Kakak membeli 3 kantong jeruk yang masing-masing kantong beratnya 0,5 kg. Di perjalanan pulang, Kakak memberikan 1,25 kg dari total buah yang dibelinya kepada sepupunya.',
+                questionText: 'Bentuk operasi hitung yang tepat untuk menentukan sisa berat seluruh buah yang dimiliki Kakak sekarang adalah ....',
+                options: [
+                    { id: 'A', text: '2 1/2 + 3 × 0,5 - 1,25' },
+                    { id: 'B', text: '2 1/2 × 3 + 0,5 - 1,25' },
+                    { id: 'C', text: '2 1/2 + 3 + 0,5 - 1,25' },
+                    { id: 'D', text: '2 1/2 - 3 × 0,5 + 1,25' }
+                ],
+                correct: 'A'
+            },
+            {
+                id: 8, type: 'pg', title: 'Festival Pelestarian Budaya',
+                stimulusText: 'Dalam rangka memperingati hari ulang tahun desa, panitia Karang Taruna menyelenggarakan kegiatan Festival Pelestarian Budaya yang terbagi ke dalam tiga sesi kegiatan gotong royong dan pertunjukkan adat.<br><br>Data jumlah warga yang menjadi peserta pada setiap sesi kegiatan adalah sebagai berikut:<br>• <strong>Sesi 1 (Pawai Baju Adat):</strong> Diikuti oleh 120 orang peserta.<br>• <strong>Sesi 2 (Bazar Kuliner Tradisional):</strong> Jumlah peserta sebanyak 3/4 dari jumlah peserta Sesi 1.<br>• <strong>Sesi 3 (Pentas Seni & Musik Daerah):</strong> Jumlah peserta sebanyak 1,5 kali dari jumlah peserta Sesi 2.',
+                questionText: 'Berdasarkan data di atas, total seluruh peserta yang mengikuti ketiga sesi kegiatan Festival Pelestarian Budaya tersebut adalah ....',
+                options: [{ id: 'A', text: '245 orang' }, { id: 'B', text: '315 orang' }, { id: 'C', text: '345 orang' }, { id: 'D', text: '375 orang' }],
+                correct: 'C'
+            },
+            {
+                id: 9, type: 'pg', title: 'Pengamatan Laju Pertumbuhan Tanaman Sains',
+                stimulusText: 'Kelompok sains SD Nusa Bangsa sedang mengamati pertumbuhan dua batang tanaman cabai (Tanaman A dan Tanaman B) selama 15 hari. Data rata-rata pertambahan tinggi harian kedua tanaman dicatat sebagai berikut:<br>• <strong>Tanaman A:</strong> Bertambah tinggi rata-rata 2,4 cm per hari.<br>• <strong>Tanaman B:</strong> Bertambah tinggi rata-rata 7,6 cm per hari.<br><br>Kelompok sains tersebut ingin menghitung total gabungan pertambahan tinggi kedua tanaman selama 15 hari pengamatan. Empat siswa mengajukan strategi penyelesaian yang berbeda sebagai berikut:<br>• <strong>Strategi 1 (Andi):</strong> Menjumlahkan pertambahan tinggi harian kedua tanaman terlebih dahulu (2,4 + 7,6), lalu hasilnya dikalikan dengan 15.<br>• <strong>Strategi 2 (Budi):</strong> Mengalikan pertambahan tinggi Tanaman A (2,4 × 15) dan Tanaman B (7,6 × 15) secara terpisah, lalu kedua hasilnya dijumlahkan.<br>• <strong>Strategi 3 (Cici):</strong> Mengubah desimal menjadi pecahan campuran (2 2/5 dan 7 3/5), dikalikan 15 satu per satu, kemudian dijumlahkan.<br>• <strong>Strategi 4 (Deni):</strong> Mengalikan pertambahan tinggi Tanaman A dengan Tanaman B (2,4 × 7,6), lalu hasilnya dikalikan 15.',
+                questionText: 'Strategi penyelesaian yang paling efisien (paling cepat dan mudah dihitung tanpa melakukan perkalian desimal yang rumit) beserta alasan yang tepat adalah ....',
+                options: [
+                    { id: 'A', text: 'Strategi 1, karena memanfaatkan sifat distributif di mana 2,4 + 7,6 = 10, sehingga perkalian menjadi sangat mudah yaitu 10 × 15 = 150 cm.' },
+                    { id: 'B', text: 'Strategi 2, karena menghitung pertambahan tinggi masing-masing tanaman secara terpisah memberikan hasil perkalian desimal yang lebih akurat.' },
+                    { id: 'C', text: 'Strategi 3, karena mengubah desimal menjadi pecahan campuran dapat menghindari kesalahan dalam meletakkan tanda koma desimal.' },
+                    { id: 'D', text: 'Strategi 4, karena mengalikan kedua laju pertumbuhan terlebih dahulu merupakan cara tercepat untuk menggabungkan dua variabel pengamatan.' }
+                ],
+                correct: 'A'
+            },
+            {
+                id: 10, type: 'pg', title: 'Kertas Lipat untuk Kerajinan Bayu',
+                stimulusText: 'Bayu memiliki empat lembar kertas lipat persegi yang berukuran persis sama. Bayu membagi setiap kertas lipat menjadi beberapa bagian sama besar dan mengarsir sebagian posisinya untuk membuat hiasan kerajinan tangan, seperti ditunjukkan pada gambar berikut:', svgType: 'origami',
+                questionText: 'Gambar kertas lipat yang menunjukkan bagian diarsir dengan nilai pecahan paling kecil adalah ....',
+                options: [{ id: 'A', text: 'Kertas A' }, { id: 'B', text: 'Kertas B' }, { id: 'C', text: 'Kertas C' }, { id: 'D', text: 'Kertas D' }],
+                correct: 'D'
+            },
+            {
+                id: 11, type: 'pg', title: 'Motif Ceplok Batik Daerah',
+                stimulusText: 'Siti menyukai kain batik khas daerahnya yang memiliki pola hiasan geometris berulang (Motif Ceplok). Saat memperhatikan salah satu pola bingkai di tengah kain batik tersebut, Siti melihat sebuah bangun segi banyak beraturan yang memiliki 6 buah sisi sama panjang dan 6 buah titik sudut seperti tampak pada gambar berikut:', svgType: 'hexagon_batik',
+                questionText: 'Nama bangun datar segi banyak yang digunakan sebagai bingkai pola batik di atas adalah ....',
+                options: [{ id: 'A', text: 'Segi lima (Pentagon)' }, { id: 'B', text: 'Segi enam (Heksagon)' }, { id: 'C', text: 'Segi tujuh (Heptagon)' }, { id: 'D', text: 'Segi delapan (Oktagon)' }],
+                correct: 'B'
+            },
+            {
+                id: 12, type: 'pg', title: 'Rancangan Model Panel Surya Satelit Pengamat Cuaca',
+                stimulusText: 'Tim sains muda sekolah membuat rancangan model panel surya untuk satelit pengamat cuaca. Rangkaian objek tersebut disusun menggunakan gabungan beberapa jenis bangun datar segi banyak, yaitu modul pusat berbentuk segi enam (heksagon) dan modul penerjemah energi berbentuk segi tiga.<br><br>Berikut adalah diagram gambar rancangan objek satelit tersebut:', svgType: 'satellite',
+                questionText: 'Berdasarkan gambar rancangan di atas, banyak bangun datar segi tiga yang digunakan untuk menyusun seluruh objek satelit tersebut adalah ....',
+                options: [{ id: 'A', text: '6 buah' }, { id: 'B', text: '8 buah' }, { id: 'C', text: '10 buah' }, { id: 'D', text: '12 buah' }],
+                correct: 'C'
+            },
+            {
+                id: 13, type: 'kategori', title: 'Klasifikasi Segi Banyak Dika',
+                stimulusText: 'Dika sedang bermain mengelompokkan kartu bangun datar segi banyak ke dalam dua wadah berbeda berdasarkan sifat-sifat geometri yang dimilikinya:<br>• <strong>Wadah A:</strong> Tempat khusus untuk Segi Banyak Beraturan (syarat: semua sisinya sama panjang dan semua sudutnya sama besar).<br>• <strong>Wadah B:</strong> Tempat khusus untuk Segi Banyak Tidak Beraturan (syarat: panjang sisi atau besar sudutnya tidak sama).',
+                questionText: 'Berdasarkan syarat sifat geometri segi banyak di atas, berilah tanda centang (✓) pada kolom Benar atau Salah untuk setiap analisis klasifikasi yang dilakukan Dika!',
+                colHeaders: ['Benar', 'Salah'],
+                categories: [
+                    'Segitiga sama sisi tepat dimasukkan ke dalam Wadah A, karena ketiga sisinya sama panjang dan ketiga sudutnya sama besar.',
+                    'Persegi panjang tepat dimasukkan ke dalam Wadah A, karena keempat sudutnya merupakan sudut siku-siku (90°) yang sama besar.',
+                    'Belah ketupat (yang bukan persegi) tepat dimasukkan ke dalam Wadah B, karena meskipun keempat sisinya sama panjang, besar sudut-sudutnya tidak semuanya sama.'
+                ],
+                correct: ['Benar', 'Salah', 'Benar']
+            },
+            {
+                id: 14, type: 'pg', title: 'Kartu Nama Persegi Panjang Aisyah',
+                stimulusText: 'Aisyah sedang membuat hiasan berupa kartu nama dari kertas lipat berbentuk bangun datar persegi panjang untuk dipasang di meja belajarnya. Sebelum melipat dan menghiasnya, Aisyah mencobanya dengan membuat beberapa garis lipatan putus-putus pada kartu tersebut seperti tampak pada gambar berikut.', svgType: 'rectangle_card',
+                questionText: 'Berdasarkan gambar kartu berbentuk persegi panjang di atas, banyaknya simetri lipat yang dimiliki oleh bangun datar tersebut adalah ....',
+                options: [{ id: 'A', text: '1' }, { id: 'B', text: '2' }, { id: 'C', text: '3' }, { id: 'D', text: '4' }],
+                correct: 'B'
+            },
+            {
+                id: 15, type: 'pg', title: 'Hiasan Layang-Layang Tradisional Made',
+                stimulusText: 'Dalam rangka menyemarakkan acara "Pentas Seni dan Budaya Nusantara", siswa SD Nusantara bekerjasama membuat dekorasi panggung. Panitia membuat hiasan gantung berbentuk motif layang-layang tradisional.<br><br>Agar hiasan tersebut terlihat seimbang saat dilipat dan dipasang, Made menggambar beberapa garis putus-putus (garis p, q, r, dan s) pada pola hiasan seperti gambar berikut untuk menentukan lipatan yang menghasilkan dua bagian yang saling menutupi secara sempurna.<br><br><strong>Keterangan Garis:</strong><br>• <strong>Garis p :</strong> Garis vertikal tegak dari titik A ke C (A-C)<br>• <strong>Garis q :</strong> Garis horizontal mendatar dari titik B ke D (B-D)<br>• <strong>Garis r :</strong> Garis miring yang memotong sisi CD dan AB<br>• <strong>Garis s :</strong> Garis mendatar sejajar sisi BD di bagian atas', svgType: 'kite',
+                questionText: 'Berdasarkan desain hiasan layang-layang tradisional di atas, garis yang merupakan garis simetri (sumbu simetri) yang tepat adalah ....',
+                options: [{ id: 'A', text: 'Garis p' }, { id: 'B', text: 'Garis q' }, { id: 'C', text: 'Garis r' }, { id: 'D', text: 'Garis s' }],
+                correct: 'A'
+            },
+            {
+                id: 16, type: 'kategori', title: 'Eksperimen Simetri Lipat Laboratorium',
+                stimulusText: 'Siswa kelas 5 sedang melakukan eksperimen pengujian simetri lipat di laboratorium sekolah. Setiap kelompok memotong tiga jenis bangun datar dari kertas origami, lalu membuat garis lipatan (garis putus-putus) untuk menguji apakah lipatan tersebut membagi bangun menjadi dua bagian yang saling menutupi secara sempurna (berimpit tepat).<br><br>Berikut adalah data hasil pengamatan eksperimen lipatan tersebut:',
+                stimulusTable: `<table class="w-full text-xs text-left border-collapse border border-slate-300"><thead><tr class="bg-blue-100 text-blue-900"><th class="p-2 border text-center">Kode Bangun</th><th class="p-2 border">Bentuk Bangun Datar</th><th class="p-2 border">Garis Lipatan yang Diuji</th><th class="p-2 border">Hasil Pengamatan Lipatan</th></tr></thead><tbody><tr class="border-b"><td class="p-2 border text-center font-bold">Bangun A</td><td class="p-2 border">Segitiga sama sisi</td><td class="p-2 border">Garis tegak dari titik sudut atas ke pertengahan sisi alas</td><td class="p-2 border">Kedua lipatan bagian kanan dan kiri saling menutupi secara sempurna.</td></tr><tr class="border-b"><td class="p-2 border text-center font-bold">Bangun B</td><td class="p-2 border">Jajargenjang</td><td class="p-2 border">Garis lurus miring yang menghubungkan dua titik sudut berhadapan (diagonal)</td><td class="p-2 border">Kedua lipatan membentuk dua segitiga identik, tetapi tidak saling menutupi secara sempurna (ada bagian yang mencuat keluar).</td></tr><tr><td class="p-2 border text-center font-bold">Bangun C</td><td class="p-2 border">Belah ketupat</td><td class="p-2 border">Garis lurus yang menghubungkan dua titik sudut berhadapan (diagonal)</td><td class="p-2 border">Kedua lipatan atas dan bawah saling menutupi secara sempurna.</td></tr></tbody></table>`,
+                questionText: 'Berdasarkan hasil eksperimen lipatan di atas, berilah tanda centang (✓) pada kolom Benar atau Salah untuk setiap pernyataan mengenai hubungan antara garis lipatan dan simetri lipat berikut!',
+                colHeaders: ['Benar', 'Salah'],
+                categories: [
+                    'Garis lipatan pada Bangun A (Segitiga sama sisi) terbukti merupakan sumbu simetri karena menghasilkan dua bagian yang saling menutupi secara sempurna.',
+                    'Garis diagonal pada Bangun B (Jajargenjang) merupakan sumbu simetri lipat karena membagi bangun menjadi dua segitiga yang sama besar.',
+                    'Bangun C (Belah ketupat) memiliki sumbu simetri lipat sepanjang garis diagonalnya karena lipatan tersebut membuat seluruh tepi dan sudutnya berimpit tepat.'
+                ],
+                correct: ['Benar', 'Salah', 'Benar']
+            },
+            {
+                id: 17, type: 'pg', title: 'Pengukuran Panjang Pita Rian',
+                stimulusText: 'Rian memiliki empat helai pita warna-warni yang akan digunakan untuk menghias kotak hadiah. Rian mengukur panjang masing-masing pita dengan satuan panjang yang berbeda-beda seperti dicatat pada tabel berikut:',
+                stimulusTable: `<table class="w-3/4 mx-auto text-xs text-left border-collapse border border-slate-300"><thead><tr class="bg-blue-100 text-blue-900"><th class="p-2 border">Nama Pita</th><th class="p-2 border">Ukuran Panjang</th></tr></thead><tbody><tr><td class="p-2 border">Pita Merah</td><td class="p-2 border font-bold">1,2 m</td></tr><tr><td class="p-2 border">Pita Biru</td><td class="p-2 border font-bold">85 cm</td></tr><tr><td class="p-2 border">Pita Hijau</td><td class="p-2 border font-bold">15 dm</td></tr><tr><td class="p-2 border">Pita Kuning</td><td class="p-2 border font-bold">900 mm</td></tr></tbody></table>`,
+                questionText: 'Berdasarkan data ukuran di atas, pita yang memiliki ukuran paling panjang adalah ....',
+                options: [{ id: 'A', text: 'Pita Merah' }, { id: 'B', text: 'Pita Biru' }, { id: 'C', text: 'Pita Hijau' }, { id: 'D', text: 'Pita Kuning' }],
+                correct: 'C'
+            },
+            {
+                id: 18, type: 'pg', title: 'Panjang Akar Kangkung Hidroponik',
+                stimulusText: 'Dalam sebuah eksperimen sains biologi sekolah, sekelompok siswa mengukur panjang total jaringan akar dari satu sampel tanaman kangkung hidroponik. Pengukuran dilakukan pada tiga bagian utama jaringan akar menggunakan alat ukur dengan satuan yang berbeda:<br>• <strong>Akar Utama:</strong> 1,5 m<br>• <strong>Akar Cabang Samping:</strong> 8 dm<br>• <strong>Akar Serabut Halus:</strong> 35 cm<br><br>Untuk keperluan laporan ilmiah sains, total panjang seluruh jaringan akar tanaman tersebut harus dituliskan dalam satuan sentimeter (cm).',
+                questionText: 'Total panjang seluruh jaringan akar tanaman hidroponik tersebut setelah dikonversi ke dalam satuan sentimeter (cm) adalah ....',
+                options: [{ id: 'A', text: '195 cm' }, { id: 'B', text: '235 cm' }, { id: 'C', text: '265 cm' }, { id: 'D', text: '2.650 cm' }],
+                correct: 'C'
+            },
+            {
+                id: 19, type: 'mcma', title: 'Rute Perjalanan Pawai Kirab Adat',
+                stimulusText: 'Panitia Karang Taruna Desa Sukamaju merancang rute perjalanan untuk peserta Pawai Kirab Adat dari titik keberangkatan Balai Adat menuju Alun-Alun Utama Desa. Terdapat tiga pilihan rute jalan yang dapat dilalui peserta pawai dengan titik transit (pos penghentian) yang berbeda-beda.<br><br>Data jarak antarpos pada ketiga alternatif rute tersebut dicatat dalam bentuk satuan panjang sebagai berikut:<br>• <strong>Rute 1 (melalui Desa Krajan):</strong><br>&nbsp;&nbsp;Balai Adat → Pos Krajan: 1,5 km<br>&nbsp;&nbsp;Pos Krajan → Alun-Alun Utama: 120 dam<br>• <strong>Rute 2 (melalui Kampung Sentra Batik):</strong><br>&nbsp;&nbsp;Balai Adat → Pos Sentra Batik: 18 hm<br>&nbsp;&nbsp;Pos Sentra Batik → Alun-Alun Utama: 800 m<br>• <strong>Rute 3 (melalui Taman Candi Adat):</strong><br>&nbsp;&nbsp;Balai Adat → Pos Taman Candi: 1,1 km<br>&nbsp;&nbsp;Pos Taman Candi → Alun-Alun Utama: 170 dam',
+                questionText: 'Berdasarkan data jarak dan analisis efisiensi rute di atas, berilah tanda centang (✓) pada semua pernyataan yang bernalar dan bernilai benar! (Jawaban benar lebih dari satu)',
+                options: [
+                    { id: 'A', text: 'Rute 2 (melalui Kampung Sentra Batik) merupakan rute yang paling efisien untuk dilalui pawai karena memiliki total jarak paling pendek, yaitu 2.600 m (2,6 km).' },
+                    { id: 'B', text: 'Rute 1 (melalui Desa Krajan) lebih efisien (lebih pendek) daripada Rute 2 dengan selisih jarak 100 m.' },
+                    { id: 'C', text: 'Rute 3 (melalui Taman Candi Adat) merupakan rute yang paling tidak efisien karena peserta harus menempuh jarak paling jauh, yaitu 2.800 m (2,8 km).' }
+                ],
+                correct: ['A', 'C']
+            },
+            {
+                id: 20, type: 'pg', title: 'Penimbangan Buah Dafa',
+                stimulusText: 'Pada hari Minggu, Dafa membantu ibunya menimbang empat jenis buah yang baru saja dibeli dari toko buah. Dafa mencatat hasil penimbangan keempat kantong buah tersebut ke dalam tabel berikut:',
+                stimulusTable: `<table class="w-full text-xs text-left border-collapse border border-slate-300"><thead><tr class="bg-blue-100 text-blue-900"><th class="p-2 border text-center">Kantong</th><th class="p-2 border">Jenis Buah</th><th class="p-2 border">Hasil Penimbangan</th></tr></thead><tbody><tr><td class="p-2 border text-center font-bold">Kantong A</td><td class="p-2 border">Buah Apel</td><td class="p-2 border font-bold">1 kg 500 gram</td></tr><tr><td class="p-2 border text-center font-bold">Kantong B</td><td class="p-2 border">Buah Naga</td><td class="p-2 border font-bold">1.800 gram</td></tr><tr><td class="p-2 border text-center font-bold">Kantong C</td><td class="p-2 border">Buah Melon</td><td class="p-2 border font-bold">22 ons</td></tr><tr><td class="p-2 border text-center font-bold">Kantong D</td><td class="p-2 border">Buah Jeruk</td><td class="p-2 border font-bold">2 kg</td></tr></tbody></table>`,
+                questionText: 'Berdasarkan hasil penimbangan di atas, kantong buah yang paling berat adalah ....',
+                options: [
+                    { id: 'A', text: 'Kantong A (Buah Apel)' },
+                    { id: 'B', text: 'Kantong B (Buah Naga)' },
+                    { id: 'C', text: 'Kantong C (Buah Melon)' },
+                    { id: 'D', text: 'Kantong D (Buah Jeruk)' }
+                ],
+                correct: 'C'
+            },
+            {
+                id: 21, type: 'pg', title: 'Bahan Memasak Dodol Tradisional',
+                stimulusText: 'Warga Desa Suka Maju mengadakan kegiatan gotong royong memasak makanan tradisional dodol dalam rangka memperingati syukuran panen raya. Panitia konsumsi menyiapkan daftar kebutuhan bahan utama yang harus dibeli dalam satuan berat yang berbeda-beda sebagai berikut:<br>• <strong>Beras Ketan:</strong> 4 kg<br>• <strong>Gula Merah:</strong> 25 hg<br>• <strong>Kelapa Parut:</strong> 1.500 gram<br>• <strong>Tepung Tapioka:</strong> 200 dag',
+                questionText: 'Total berat seluruh bahan utama yang diperlukan warga untuk memasak dodol tradisional tersebut dalam satuan kilogram (kg) adalah ....',
+                options: [{ id: 'A', text: '8 kg' }, { id: 'B', text: '9,5 kg' }, { id: 'C', text: '10 kg' }, { id: 'D', text: '12 kg' }],
+                correct: 'C'
+            },
+            {
+                id: 22, type: 'kategori', title: 'Hasil Panen Tomat Empat Lahan Pupuk Organik',
+                stimulusText: 'Tim peneliti muda sekolah melakukan uji coba efektivitas empat jenis pupuk organik terhadap hasil panen tanaman tomat di lahan percobaan. Data total berat hasil panen tomat dari keempat lahan tersebut dicatat dalam satuan berat yang berbeda-beda sebagai berikut:<br>• <strong>Lahan A (Pupuk Kandang):</strong> 250 kg<br>• <strong>Lahan B (Pupuk Kompos):</strong> 2,8 kwintal<br>• <strong>Lahan C (Pupuk Kasgot):</strong> 310.000 gram<br>• <strong>Lahan D (Pupuk Hayati):</strong> 2.900 hg',
+                questionText: 'Berdasarkan data penimbangan di atas, berilah tanda centang (✓) pada kolom Benar atau Salah untuk setiap pernyataan kesimpulan hasil eksperimen berikut!',
+                colHeaders: ['Benar', 'Salah'],
+                categories: [
+                    'Lahan C (Pupuk Kasgot) menghasilkan berat panen tomat paling tinggi di antara keempat lahan eksperimen.',
+                    'Selisih berat hasil panen tomat antara Lahan D dan Lahan A adalah 40 kg.',
+                    'Total gabungan seluruh hasil panen tomat dari keempat lahan eksperimen tersebut kurang dari 1 ton.'
+                ],
+                correct: ['Benar', 'Benar', 'Salah']
+            },
+            {
+                id: 23, type: 'pg', title: 'Satuan Waktu Kegiatan Harian Rio',
+                stimulusText: 'Rio membuat catatan waktu untuk berbagai kegiatan harian yang dilakukannya sehari-hari agar dapat mengelola waktunya dengan baik. Berikut adalah sebagian catatan kegiatan harian Rio:',
+                stimulusTable: `<table class="w-3/4 mx-auto text-xs text-left border-collapse border border-slate-300"><thead><tr class="bg-blue-100 text-blue-900"><th class="p-2 border text-center">No.</th><th class="p-2 border">Jenis Kegiatan Harian</th><th class="p-2 border">Durasi Waktu</th></tr></thead><tbody><tr><td class="p-2 border text-center">1.</td><td class="p-2 border">Mengedipkan mata</td><td class="p-2 border font-bold">1 detik</td></tr><tr><td class="p-2 border text-center">2.</td><td class="p-2 border">Mencuci tangan dengan sabun</td><td class="p-2 border font-bold">20 detik</td></tr><tr><td class="p-2 border text-center">3.</td><td class="p-2 border">Membaca 1 bab buku cerita</td><td class="p-2 border font-bold">15 menit</td></tr><tr><td class="p-2 border text-center">4.</td><td class="p-2 border">Istirahat tidur malam</td><td class="p-2 border font-bold">8 ...</td></tr></tbody></table>`,
+                questionText: 'Satuan waktu yang paling tepat dan masuk akal untuk melengkapi durasi kegiatan "Istirahat tidur malam" pada tabel di atas adalah ....',
+                options: [{ id: 'A', text: 'detik' }, { id: 'B', text: 'menit' }, { id: 'C', text: 'jam' }, { id: 'D', text: 'minggu' }],
+                correct: 'C'
+            },
+            {
+                id: 24, type: 'pg', title: 'Pagelaran Seni Tari Tradisional',
+                stimulusText: 'Warga Desa Srimulyo mengadakan acara Pagelaran Seni Tari Tradisional di balai desa dalam rangka memperingati Hari Kesenian Daerah. Acara pertunjukkan tari tersebut dimulai tepat pada pukul 08.45 WIB dan seluruh rangkaian pertunjukkan selesai pada pukul 11.20 WIB.',
+                questionText: 'Lama waktu pelaksanaan Pagelaran Seni Tari Tradisional tersebut adalah ....',
+                options: [{ id: 'A', text: '2 jam 15 menit' }, { id: 'B', text: '2 jam 35 menit' }, { id: 'C', text: '3 jam 25 menit' }, { id: 'D', text: '3 jam 35 menit' }],
+                correct: 'B'
+            },
+            {
+                id: 25, type: 'mcma', title: 'Eksperimen Pembentukan Oksigen Hydrilla',
+                stimulusText: 'Tim peneliti cilik sekolah sedang merancang jadwal eksperimen pengamatan laju pembentukan gelembung oksigen pada tanaman Hydrilla di bawah paparan sinar matahari. Syarat utama eksperimen saintifik ini membutuhkan waktu pengamatan langsung secara terus-menerus minimal selama 3 jam 15 menit (195 menit).<br><br>Ketua tim menyusun tiga alternatif opsi jadwal pengamatan laboratorium sebagai berikut:<br>• <strong>Jadwal Opsi A:</strong> Mulai pukul 08.20 WIB dan berakhir pukul 11.45 WIB.<br>• <strong>Jadwal Opsi B:</strong> Mulai pukul 09.15 WIB dan berakhir pukul 12.20 WIB.<br>• <strong>Jadwal Opsi C:</strong> Mulai pukul 13.00 WIB dan berakhir pukul 16.30 WIB.',
+                questionText: 'Berdasarkan analisis durasi waktu pengamatan di atas, berilah tanda centang (✓) pada semua opsi jadwal yang paling tepat dan memenuhi syarat minimal eksperimen! (Jawaban benar lebih dari satu)',
+                options: [
+                    { id: 'A', text: 'Jadwal Opsi A tepat dipilih karena durasi pelaksanaan pengamatannya adalah 3 jam 25 menit (205 menit), sehingga telah melampaui batas waktu minimal yang dipersyaratkan.' },
+                    { id: 'B', text: 'Jadwal Opsi B tepat dipilih karena durasi pengamatannya pas memenuhi batas minimal, yaitu 3 jam 15 menit (195 menit).' },
+                    { id: 'C', text: 'Jadwal Opsi C tepat dipilih karena memberikan waktu pengamatan paling lama, yaitu 3 jam 30 menit (210 menit), sehingga memenuhi syarat minimal eksperimen.' }
+                ],
+                correct: ['A', 'C']
+            },
+            {
+                id: 26, type: 'mcma', title: 'Pengukuran Tinggi Badan Kelompok Belajar',
+                stimulusText: 'Lani bersama empat orang teman kelompok belajarnya melakukan kegiatan pengukuran tinggi badan menggunakan meteran pita di rumah. Lani mencatat hasil pengukuran tinggi badan seluruh anggota kelompoknya ke dalam bentuk tabel berikut:',
+                stimulusTable: `<table class="w-3/4 mx-auto text-xs text-left border-collapse border border-slate-300"><thead><tr class="bg-blue-100 text-blue-900"><th class="p-2 border">Nama Siswa</th><th class="p-2 border">Tinggi Badan (cm)</th></tr></thead><tbody><tr><td class="p-2 border">Lani</td><td class="p-2 border font-bold">135</td></tr><tr><td class="p-2 border">Budi</td><td class="p-2 border font-bold">140</td></tr><tr><td class="p-2 border">Siti</td><td class="p-2 border font-bold">132</td></tr><tr><td class="p-2 border">Eko</td><td class="p-2 border font-bold">140</td></tr><tr><td class="p-2 border">Deni</td><td class="p-2 border font-bold">138</td></tr></tbody></table>`,
+                questionText: 'Berdasarkan tabel data di atas, berilah tanda centang (✓) pada semua pernyataan yang merupakan informasi benar! (Jawaban benar lebih dari satu)',
+                options: [
+                    { id: 'A', text: 'Budi dan Eko memiliki tinggi badan yang sama, yaitu 140 cm.' },
+                    { id: 'B', text: 'Siti merupakan siswa yang paling pendek di kelompok belajar Lani dengan tinggi badan 132 cm.' },
+                    { id: 'C', text: 'Terdapat 4 orang siswa yang memiliki tinggi badan lebih dari 135 cm.' }
+                ],
+                correct: ['A', 'B']
+            },
+            {
+                id: 27, type: 'pg', title: 'Pelatihan Seni Sanggar Seni Budaya Nusantara',
+                stimulusText: 'Dalam rangka melestarikan kebudayaan daerah, Sanggar Seni Budaya Nusantara menyelenggarakan pelatihan seni tradisional gratis untuk anak-anak sekolah dasar. Pengurus sanggar mencatat jumlah peserta yang terdaftar pada tiap kelompok cabang seni ke dalam tabel berikut:',
+                stimulusTable: `<table class="w-3/4 mx-auto text-xs text-left border-collapse border border-slate-300"><thead><tr class="bg-blue-100 text-blue-900"><th class="p-2 border">Kelompok Cabang Seni</th><th class="p-2 border">Jumlah Peserta</th></tr></thead><tbody><tr><td class="p-2 border">Tari Saman</td><td class="p-2 border font-bold">28 anak</td></tr><tr><td class="p-2 border">Pencak Silat</td><td class="p-2 border font-bold">45 anak</td></tr><tr><td class="p-2 border">Seni Karawitan</td><td class="p-2 border font-bold">32 anak</td></tr><tr><td class="p-2 border">Musik Angklung</td><td class="p-2 border font-bold">54 anak</td></tr></tbody></table>`,
+                questionText: 'Selisih antara jumlah peserta pada kelompok Musik Angklung dan kelompok Tari Saman adalah ....',
+                options: [{ id: 'A', text: '16 anak' }, { id: 'B', text: '22 anak' }, { id: 'C', text: '26 anak' }, { id: 'D', text: '82 anak' }],
+                correct: 'C'
+            },
+            {
+                id: 28, type: 'kategori', title: 'Pengamatan Pertumbuhan Tanaman Kacang Hijau',
+                stimulusText: 'Siswa kelas 5 melakukan eksperimen sains untuk mengamati pengaruh pemberian pupuk terhadap pertumbuhan tinggi tanaman kacang hijau selama 4 minggu. Hasil pengukuran tinggi tanaman dicatat dalam tabel data pengamatan berikut:',
+                stimulusTable: `<table class="w-full text-xs text-left border-collapse border border-slate-300"><thead><tr class="bg-blue-100 text-blue-900"><th class="p-2 border text-center">Minggu Ke-</th><th class="p-2 border">Tinggi Tanaman A (Dengan Pupuk)</th><th class="p-2 border">Tinggi Tanaman B (Tanpa Pupuk)</th></tr></thead><tbody><tr class="border-b"><td class="p-2 border text-center font-bold">1</td><td class="p-2 border">3 cm</td><td class="p-2 border">2 cm</td></tr><tr class="border-b"><td class="p-2 border text-center font-bold">2</td><td class="p-2 border">7 cm</td><td class="p-2 border">4 cm</td></tr><tr class="border-b"><td class="p-2 border text-center font-bold">3</td><td class="p-2 border">12 cm</td><td class="p-2 border">7 cm</td></tr><tr><td class="p-2 border text-center font-bold">4</td><td class="p-2 border">18 cm</td><td class="p-2 border">9 cm</td></tr></tbody></table>`,
+                questionText: 'Berdasarkan data tabel hasil pengamatan di atas, berilah tanda centang (✓) pada kolom Benar atau Salah untuk setiap pernyataan interpretasi ilmiah berikut!',
+                colHeaders: ['Benar', 'Salah'],
+                categories: [
+                    'Laju pertambahan tinggi Tanaman A selalu mengalami peningkatan yang semakin besar pada setiap minggunya.',
+                    'Pada akhir pengamatan (minggu ke-4), tinggi Tanaman A tepat dua kali lipat dari tinggi Tanaman B.',
+                    'Pertambahan tinggi Tanaman B paling pesat (paling besar) terjadi pada rentang minggu ke-3 menuju minggu ke-4.'
+                ],
+                correct: ['Benar', 'Benar', 'Salah']
+            },
+            {
+                id: 29, type: 'pg', title: 'Tabungan Uang Saku Doni',
+                stimulusText: 'Setiap hari sekolah (Senin sampai Jumat), Doni mendapat uang saku dari ibunya sebesar Rp10.000,00 per hari. Doni selalu mencatat pengeluaran harian uang sakunya untuk membeli makanan dan alat tulis di sekolah ke dalam tabel berikut:<br><br>Sisa dari uang saku harian yang tidak terpakai selalu disisihkan Doni untuk ditabung.',
+                stimulusTable: `<table class="w-3/4 mx-auto text-xs text-left border-collapse border border-slate-300"><thead><tr class="bg-blue-100 text-blue-900"><th class="p-2 border">Hari</th><th class="p-2 border">Pengeluaran Harian</th></tr></thead><tbody><tr><td class="p-2 border">Senin</td><td class="p-2 border font-bold">Rp6.000,00</td></tr><tr><td class="p-2 border">Selasa</td><td class="p-2 border font-bold">Rp7.500,00</td></tr><tr><td class="p-2 border">Rabu</td><td class="p-2 border font-bold">Rp5.000,00</td></tr><tr><td class="p-2 border">Kamis</td><td class="p-2 border font-bold">Rp8.000,00</td></tr><tr><td class="p-2 border">Jumat</td><td class="p-2 border font-bold">Rp6.500,00</td></tr></tbody></table>`,
+                questionText: 'Berdasarkan data pengeluaran di atas, jumlah total uang saku yang berhasil ditabung Doni selama 5 hari (Senin–Jumat) adalah ....',
+                options: [{ id: 'A', text: 'Rp13.000,00' }, { id: 'B', text: 'Rp17.000,00' }, { id: 'C', text: 'Rp23.000,00' }, { id: 'D', text: 'Rp33.000,00' }],
+                correct: 'B'
+            },
+            {
+                id: 30, type: 'kategori', title: 'Survei Ketersediaan Waktu Kerja Bakti',
+                stimulusText: 'Panitia Karang Taruna Desa Asri mengadakan survei ketersediaan waktu warga untuk melaksanakan kegiatan gotong royong kerja bakti dalam rangka persiapan peringatan Acara Adat Bersih Desa. Panitia membagikan lembar survei kepada perwakilan warga dan memperoleh data ketersediaan waktu sebagai berikut:<br><br>Berdasarkan hasil survei tersebut, panitia merumuskan beberapa rencana keputusan pengorganisasian kegiatan.',
+                stimulusTable: `<table class="w-3/4 mx-auto text-xs text-left border-collapse border border-slate-300"><thead><tr class="bg-blue-100 text-blue-900"><th class="p-2 border">Pilihan Waktu Kerja Bakti</th><th class="p-2 border">Jumlah Warga yang Bersedia Hadir</th></tr></thead><tbody><tr><td class="p-2 border">Jumat Malam</td><td class="p-2 border font-bold">40 orang</td></tr><tr><td class="p-2 border">Sabtu Sore</td><td class="p-2 border font-bold">65 orang</td></tr><tr><td class="p-2 border">Minggu Pagi</td><td class="p-2 border font-bold">140 orang</td></tr><tr><td class="p-2 border">Minggu Sore</td><td class="p-2 border font-bold">75 orang</td></tr></tbody></table>`,
+                questionText: 'Berdasarkan analisis data survei di atas, berilah tanda centang (✓) pada kolom Tepat atau Tidak Tepat untuk setiap opsi keputusan yang diambil panitia!',
+                colHeaders: ['Tepat', 'Tidak Tepat'],
+                categories: [
+                    'Panitia menetapkan Minggu Pagi sebagai waktu utama pelaksanaan kerja bakti massal desa karena didukung partisipasi warga terbanyak.',
+                    'Panitia memutuskan mengalihkan fokus kegiatan gotong royong dari hari Jumat Malam ke hari Minggu Sore karena partisipasi warga di hari Minggu Sore hampir dua kali lipat dibanding Jumat Malam.',
+                    'Panitia memutuskan untuk membagi anggaran belanja makanan konsumsi secara sama rata (50% : 50%) antara sesi Sabtu Sore dan sesi Minggu Pagi.'
+                ],
+                correct: ['Tepat', 'Tepat', 'Tidak Tepat']
+            }
+        ];
+
+        // ==================== APP STATE ====================
+        let participantInfo = { nama: '', lembaga: '', tglLahir: '' };
+        let currentQuestionIndex = 0;
+        let userAnswers = {};
+        let doubtfulAnswers = {};
+        let timerSeconds = 75 * 60;
+        let timerInterval = null;
+        let examStarted = false;
+        let examFinished = false;
+
+        // ==================== SECURITY & INITIALIZATION ====================
+        window.addEventListener('load', () => {
+            initSecurityProtocols();
+        });
+
+        function initSecurityProtocols() {
+            window.addEventListener('unhandledrejection', e => e.preventDefault());
+            document.addEventListener('contextmenu', e => e.preventDefault());
+            document.addEventListener('selectstart', e => e.preventDefault());
+            document.addEventListener('copy', e => e.preventDefault());
+            document.addEventListener('paste', e => e.preventDefault());
+
+            document.addEventListener('keydown', e => {
+                if (!examStarted || examFinished) return;
+                const isCtrl = e.ctrlKey || e.metaKey;
+                const key = e.key.toLowerCase();
+                if (e.key === 'F12' || (isCtrl && (key === 't' || key === 'n' || key === 'w' || key === 'u' || key === 's' || key === 'a' || key === 'l')) || (isCtrl && e.shiftKey && (key === 'i' || key === 'j' || key === 'c' || key === 'n' || key === 't'))) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    triggerCheatingDisqualification('Mencoba membuka tab baru atau pintasan keyboard terlarang!');
+                    return false;
+                }
+            });
+
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden && examStarted && !examFinished) {
+                    triggerCheatingDisqualification('Meninggalkan atau berpindah dari tab ujian!');
+                }
+            });
+
+            let blurTimeout = null;
+            window.addEventListener('blur', () => {
+                if (!examStarted || examFinished) return;
+                if (blurTimeout) clearTimeout(blurTimeout);
+                blurTimeout = setTimeout(() => {
+                    if ((document.hidden || !document.hasFocus()) && examStarted && !examFinished) {
+                        triggerCheatingDisqualification('Membuka aplikasi lain / beralih dari jendela ujian!');
+                    }
+                }, 150);
+            });
+
+            document.addEventListener('fullscreenchange', () => {
+                if (!document.fullscreenElement && examStarted && !examFinished) {
+                    triggerCheatingDisqualification('Keluar dari mode layar penuh (Fullscreen)!');
+                }
+            });
+        }
+
+        function triggerCheatingDisqualification(reason) {
+            if (!examStarted || examFinished) return;
+            examStarted = false;
+            examFinished = true;
+            clearInterval(timerInterval);
+
+            try {
+                if (document.fullscreenElement && document.exitFullscreen) {
+                    document.exitFullscreen().catch(() => {});
+                }
+            } catch (err) {}
+
+            alert(`⚠️ PELANGGARAN TERDETEKSI!\n\nAlasan: ${reason}\n\nSistem membatalkan sesi ujian Anda secara otomatis. Seluruh jawaban direset dan NILAI TIDAK TERSIMPAN.`);
+
+            userAnswers = {};
+            doubtfulAnswers = {};
+            currentQuestionIndex = 0;
+            timerSeconds = 75 * 60;
+            participantInfo = { nama: '', lembaga: '', tglLahir: '' };
+
+            document.getElementById('input-nama').value = '';
+            document.getElementById('input-lembaga').value = '';
+            document.getElementById('input-tgllahir').value = '';
+            document.getElementById('input-token').value = '';
+            document.getElementById('token-error').classList.add('hidden');
+            document.getElementById('modal-submit').classList.add('hidden');
+
+            document.getElementById('exam-page').classList.add('hidden');
+            document.getElementById('result-page').classList.add('hidden');
+            document.getElementById('login-page').classList.remove('hidden');
+        }
+
+        function requestFullscreen() {
+            try {
+                const elem = document.documentElement;
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen().catch(() => {});
+                } else if (elem.webkitRequestFullscreen) {
+                    elem.webkitRequestFullscreen();
+                } else if (elem.msRequestFullscreen) {
+                    elem.msRequestFullscreen();
+                }
+            } catch (err) {}
+        }
+
+        function safePrint() {
+            try { window.print(); } catch (err) {}
+        }
+
+        // ==================== LOGIN LOGIC ====================
+        function handleLogin(event) {
+            event.preventDefault();
+
+            const nama = document.getElementById('input-nama').value.trim();
+            const lembaga = document.getElementById('input-lembaga').value.trim();
+            const tgllahir = document.getElementById('input-tgllahir').value;
+            const token = document.getElementById('input-token').value.trim().toUpperCase();
+            const tokenErr = document.getElementById('token-error');
+
+            if (token !== 'GUSLAH1') {
+                tokenErr.classList.remove('hidden');
+                return;
+            } else {
+                tokenErr.classList.add('hidden');
+            }
+
+            participantInfo = { nama, lembaga, tglLahir: formatDate(tgllahir) };
+            
+            document.getElementById('header-nama').textContent = nama;
+            document.getElementById('header-lembaga').textContent = lembaga;
+
+            requestFullscreen();
+            document.getElementById('login-page').classList.add('hidden');
+            document.getElementById('exam-page').classList.remove('hidden');
+
+            examStarted = true;
+            examFinished = false;
+            startTimer();
+            renderQuestionGrid();
+            loadQuestion(0);
+        }
+
+        function formatDate(dateStr) {
+            if (!dateStr) return '-';
+            const parts = dateStr.split('-');
+            return parts.length === 3 ? `${parts[2]}/${parts[1]}/${parts[0]}` : dateStr;
+        }
+
+        // ==================== TIMER ENGINE ====================
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (timerSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    autoSubmitTimerExpired();
+                    return;
+                }
+                timerSeconds--;
+                updateTimerDisplay();
+                if (timerSeconds === 300) {
+                    document.getElementById('timer-box').classList.add('timer-warning');
+                    alert('PERHATIAN: Waktu ujian tersisa 5 menit lagi!');
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const mins = Math.floor(timerSeconds / 60);
+            const secs = timerSeconds % 60;
+            document.getElementById('timer-display').textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
+
+        function autoSubmitTimerExpired() {
+            alert('Waktu ujian telah habis! Sistem akan mengumpulkan jawaban Anda secara otomatis.');
+            submitExamNow();
+        }
+
+        // ==================== QUESTION DISPLAY & NAV ====================
+        function renderQuestionGrid() {
+            const grid = document.getElementById('question-grid');
+            grid.innerHTML = '';
+            questionsData.forEach((q, idx) => {
+                const btn = document.createElement('button');
+                btn.id = `q-btn-${idx}`;
+                btn.onclick = () => loadQuestion(idx);
+                btn.className = `w-full h-10 rounded-lg text-xs font-bold transition flex items-center justify-center border shadow-sm ${getQuestionBtnStyle(idx)}`;
+                btn.textContent = idx + 1;
+                grid.appendChild(btn);
+            });
+        }
+
+        function getQuestionBtnStyle(idx) {
+            const q = questionsData[idx];
+            const isCurrent = idx === currentQuestionIndex;
+            const isDoubtful = doubtfulAnswers[q.id];
+            const isAnswered = checkIsAnswered(q.id);
+
+            let base = isCurrent ? 'ring-2 ring-blue-600 ring-offset-1 font-extrabold scale-105 z-10 ' : '';
+            if (isDoubtful) return base + 'bg-amber-400 text-amber-950 border-amber-500 hover:bg-amber-500';
+            if (isAnswered) return base + 'bg-emerald-500 text-white border-emerald-600 hover:bg-emerald-600';
+            return base + 'bg-slate-100 text-slate-700 border-slate-300 hover:bg-slate-200';
+        }
+
+        function updateQuestionGridButtons() {
+            questionsData.forEach((q, idx) => {
+                const btn = document.getElementById(`q-btn-${idx}`);
+                if (btn) btn.className = `w-full h-10 rounded-lg text-xs font-bold transition flex items-center justify-center border shadow-sm ${getQuestionBtnStyle(idx)}`;
+            });
+        }
+
+        function checkIsAnswered(qId) {
+            const ans = userAnswers[qId];
+            if (!ans) return false;
+            if (Array.isArray(ans)) return ans.length > 0;
+            if (typeof ans === 'object') return Object.keys(ans).length > 0;
+            return String(ans).trim() !== '';
+        }
+
+        function loadQuestion(index) {
+            if (index < 0 || index >= questionsData.length) return;
+            currentQuestionIndex = index;
+            const q = questionsData[index];
+
+            document.getElementById('q-number-display').textContent = q.id;
+            const typeBadge = document.getElementById('q-type-badge');
+            if (q.type === 'pg') {
+                typeBadge.textContent = 'Pilihan Ganda';
+                typeBadge.className = 'bg-blue-100 text-blue-800 text-xs font-bold px-2.5 py-1 rounded-md uppercase';
+            } else if (q.type === 'mcma') {
+                typeBadge.textContent = 'Pilihan Ganda Kompleks (MCMA)';
+                typeBadge.className = 'bg-purple-100 text-purple-800 text-xs font-bold px-2.5 py-1 rounded-md uppercase';
+            } else if (q.type === 'kategori') {
+                typeBadge.textContent = 'Pilihan Ganda Kompleks (Kategori)';
+                typeBadge.className = 'bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-1 rounded-md uppercase';
+            }
+
+            document.getElementById('stimulus-text').innerHTML = q.stimulusText || '';
+            const tableBox = document.getElementById('stimulus-table');
+            if (q.stimulusTable) {
+                tableBox.innerHTML = q.stimulusTable;
+                tableBox.classList.remove('hidden');
+            } else {
+                tableBox.innerHTML = '';
+                tableBox.classList.add('hidden');
+            }
+
+            renderSVGGraphic(q.svgType);
+            document.getElementById('question-text').innerHTML = q.questionText;
+            renderAnswerOptions(q);
+            document.getElementById('chk-doubtful').checked = !!doubtfulAnswers[q.id];
+
+            document.getElementById('btn-prev').disabled = (index === 0);
+            const btnNext = document.getElementById('btn-next');
+            const btnSubmit = document.getElementById('btn-submit-exam');
+
+            if (index === questionsData.length - 1) {
+                btnNext.classList.add('hidden');
+                btnSubmit.classList.remove('hidden');
+            } else {
+                btnNext.classList.remove('hidden');
+                btnSubmit.classList.add('hidden');
+            }
+
+            updateQuestionGridButtons();
+            document.getElementById('question-content-box').scrollTop = 0;
+        }
+
+        function navigateQuestion(direction) { loadQuestion(currentQuestionIndex + direction); }
+        function toggleDoubtful() {
+            doubtfulAnswers[questionsData[currentQuestionIndex].id] = document.getElementById('chk-doubtful').checked;
+            updateQuestionGridButtons();
+        }
+        function toggleSidebar() { document.getElementById('sidebar-map').classList.toggle('hidden'); }
+
+        // ==================== SVG VISUAL RENDERER (LENGKAP & PRESISI) ====================
+        function renderSVGGraphic(svgType) {
+            const svgBox = document.getElementById('svg-container');
+            if (!svgType) {
+                svgBox.innerHTML = '';
+                svgBox.classList.add('hidden');
+                return;
+            }
+            svgBox.classList.remove('hidden');
+            let svgHTML = '';
+            switch (svgType) {
+                case 'chocolate':
+                    svgHTML = `
+                        <div class="text-center font-semibold text-xs text-slate-600 mb-2">Visual Soal 4: Cokelat Dina (2 dari 6 bagian dimakan)</div>
+                        <svg viewBox="0 0 400 220" class="w-full max-w-sm h-auto drop-shadow-md">
+                            <rect x="20" y="20" width="360" height="180" rx="12" fill="#5c2c16" stroke="#3b1a0c" stroke-width="4"/>
+                            <rect x="35" y="35" width="100" height="70" rx="6" fill="#804124" stroke="#421e0e" stroke-width="3"/>
+                            <rect x="150" y="35" width="100" height="70" rx="6" fill="#804124" stroke="#421e0e" stroke-width="3"/>
+                            <path d="M265,35 L335,35 C320,50 310,70 330,85 C305,95 285,90 265,105 Z" fill="#421e0e" opacity="0.4"/>
+                            <rect x="35" y="115" width="100" height="70" rx="6" fill="#804124" stroke="#421e0e" stroke-width="3"/>
+                            <rect x="150" y="115" width="100" height="70" rx="6" fill="#804124" stroke="#421e0e" stroke-width="3"/>
+                            <path d="M265,115 L320,115 C300,130 310,160 280,185 L265,185 Z" fill="#421e0e" opacity="0.4"/>
+                            <rect x="42" y="42" width="86" height="56" rx="4" fill="none" stroke="#a05431" stroke-width="2"/>
+                            <rect x="157" y="42" width="86" height="56" rx="4" fill="none" stroke="#a05431" stroke-width="2"/>
+                            <rect x="42" y="122" width="86" height="56" rx="4" fill="none" stroke="#a05431" stroke-width="2"/>
+                            <rect x="157" y="122" width="86" height="56" rx="4" fill="none" stroke="#a05431" stroke-width="2"/>
+                            <text x="315" y="115" font-size="12" font-weight="bold" fill="#ef4444" text-anchor="middle">2 Potong Dimakan</text>
+                        </svg>`;
+                    break;
+                case 'layercake':
+                    svgHTML = `
+                        <div class="text-center font-semibold text-xs text-slate-600 mb-2">Visual Soal 5: Loyang Kue Lapis (12 Bagian) & Piring Saji (4 Potong)</div>
+                        <svg viewBox="0 0 500 230" class="w-full max-w-md h-auto drop-shadow-md">
+                            <rect x="20" y="70" width="300" height="140" rx="8" fill="#cbd5e1" stroke="#64748b" stroke-width="4"/>
+                            <rect x="30" y="80" width="280" height="120" rx="4" fill="#94a3b8"/>
+                            <rect x="40" y="90" width="55" height="30" fill="#cbd5e1" stroke="#64748b" stroke-dasharray="3,3"/>
+                            <rect x="105" y="90" width="55" height="30" fill="#cbd5e1" stroke="#64748b" stroke-dasharray="3,3"/>
+                            <rect x="170" y="90" width="55" height="30" fill="#cbd5e1" stroke="#64748b" stroke-dasharray="3,3"/>
+                            <rect x="235" y="90" width="55" height="30" fill="#cbd5e1" stroke="#64748b" stroke-dasharray="3,3"/>
+                            <g><rect x="40" y="128" width="55" height="30" fill="#ec4899" rx="2"/><rect x="40" y="128" width="55" height="10" fill="#fde047" rx="1"/><rect x="40" y="128" width="55" height="5" fill="#78350f" rx="1"/></g>
+                            <g><rect x="105" y="128" width="55" height="30" fill="#ec4899" rx="2"/><rect x="105" y="128" width="55" height="10" fill="#fde047" rx="1"/><rect x="105" y="128" width="55" height="5" fill="#78350f" rx="1"/></g>
+                            <g><rect x="170" y="128" width="55" height="30" fill="#ec4899" rx="2"/><rect x="170" y="128" width="55" height="10" fill="#fde047" rx="1"/><rect x="170" y="128" width="55" height="5" fill="#78350f" rx="1"/></g>
+                            <g><rect x="235" y="128" width="55" height="30" fill="#ec4899" rx="2"/><rect x="235" y="128" width="55" height="10" fill="#fde047" rx="1"/><rect x="235" y="128" width="55" height="5" fill="#78350f" rx="1"/></g>
+                            <g><rect x="40" y="164" width="55" height="30" fill="#ec4899" rx="2"/><rect x="40" y="164" width="55" height="10" fill="#fde047" rx="1"/><rect x="40" y="164" width="55" height="5" fill="#78350f" rx="1"/></g>
+                            <g><rect x="105" y="164" width="55" height="30" fill="#ec4899" rx="2"/><rect x="105" y="164" width="55" height="10" fill="#fde047" rx="1"/><rect x="105" y="164" width="55" height="5" fill="#78350f" rx="1"/></g>
+                            <g><rect x="170" y="164" width="55" height="30" fill="#ec4899" rx="2"/><rect x="170" y="164" width="55" height="10" fill="#fde047" rx="1"/><rect x="170" y="164" width="55" height="5" fill="#78350f" rx="1"/></g>
+                            <g><rect x="235" y="164" width="55" height="30" fill="#ec4899" rx="2"/><rect x="235" y="164" width="55" height="10" fill="#fde047" rx="1"/><rect x="235" y="164" width="55" height="5" fill="#78350f" rx="1"/></g>
+                            <rect x="340" y="20" width="140" height="190" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="4"/>
+                            <text x="410" y="42" font-size="11" font-weight="bold" fill="#1e293b" text-anchor="middle">Piring Konsumsi</text>
+                            <g transform="translate(355, 55)"><rect x="0" y="0" width="50" height="30" fill="#ec4899" rx="2"/><rect x="0" y="0" width="50" height="10" fill="#fde047" rx="1"/><rect x="0" y="0" width="50" height="5" fill="#78350f" rx="1"/></g>
+                            <g transform="translate(415, 55)"><rect x="0" y="0" width="50" height="30" fill="#ec4899" rx="2"/><rect x="0" y="0" width="50" height="10" fill="#fde047" rx="1"/><rect x="0" y="0" width="50" height="5" fill="#78350f" rx="1"/></g>
+                            <g transform="translate(355, 100)"><rect x="0" y="0" width="50" height="30" fill="#ec4899" rx="2"/><rect x="0" y="0" width="50" height="10" fill="#fde047" rx="1"/><rect x="0" y="0" width="50" height="5" fill="#78350f" rx="1"/></g>
+                            <g transform="translate(415, 100)"><rect x="0" y="0" width="50" height="30" fill="#ec4899" rx="2"/><rect x="0" y="0" width="50" height="10" fill="#fde047" rx="1"/><rect x="0" y="0" width="50" height="5" fill="#78350f" rx="1"/></g>
+                            <text x="410" y="165" font-size="11" font-weight="bold" fill="#2563eb" text-anchor="middle">4 Potong (4/12)</text>
+                        </svg>`;
+                    break;
+                case 'origami':
+                    svgHTML = `
+                        <div class="text-center font-semibold text-xs text-slate-600 mb-2">Visual Soal 10: Empat Kertas Lipat Persegi Bayu (A, B, C, D)</div>
+                        <svg viewBox="0 0 450 320" class="w-full max-w-md h-auto drop-shadow">
+                            <g transform="translate(20, 20)">
+                                <rect x="0" y="0" width="120" height="120" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
+                                <line x1="60" y1="0" x2="60" y2="120" stroke="#1e293b" stroke-width="1.5"/>
+                                <line x1="0" y1="60" x2="120" y2="60" stroke="#1e293b" stroke-width="1.5"/>
+                                <rect x="0" y="0" width="60" height="60" fill="#94a3b8"/>
+                                <rect x="60" y="60" width="60" height="60" fill="#94a3b8"/>
+                                <text x="60" y="142" font-size="14" font-weight="bold" fill="#0f172a" text-anchor="middle">Kertas A (2/4)</text>
+                            </g>
+                            <g transform="translate(220, 20)">
+                                <rect x="0" y="0" width="120" height="120" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
+                                <line x1="60" y1="0" x2="60" y2="120" stroke="#1e293b" stroke-width="1.5"/>
+                                <line x1="0" y1="60" x2="120" y2="60" stroke="#1e293b" stroke-width="1.5"/>
+                                <rect x="0" y="0" width="60" height="60" fill="#94a3b8"/>
+                                <rect x="60" y="0" width="60" height="60" fill="#94a3b8"/>
+                                <rect x="0" y="60" width="60" height="60" fill="#94a3b8"/>
+                                <text x="60" y="142" font-size="14" font-weight="bold" fill="#0f172a" text-anchor="middle">Kertas B (3/4)</text>
+                            </g>
+                            <g transform="translate(20, 170)">
+                                <rect x="0" y="0" width="120" height="120" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
+                                <line x1="60" y1="0" x2="60" y2="120" stroke="#1e293b" stroke-width="1.5"/>
+                                <line x1="0" y1="30" x2="120" y2="30" stroke="#1e293b" stroke-width="1"/>
+                                <line x1="0" y1="60" x2="120" y2="60" stroke="#1e293b" stroke-width="1"/>
+                                <line x1="0" y1="90" x2="120" y2="90" stroke="#1e293b" stroke-width="1"/>
+                                <rect x="0" y="0" width="60" height="30" fill="#94a3b8"/>
+                                <rect x="0" y="30" width="60" height="30" fill="#94a3b8"/>
+                                <rect x="0" y="60" width="60" height="30" fill="#94a3b8"/>
+                                <text x="60" y="142" font-size="14" font-weight="bold" fill="#0f172a" text-anchor="middle">Kertas C (3/8)</text>
+                            </g>
+                            <g transform="translate(220, 170)">
+                                <rect x="0" y="0" width="120" height="120" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
+                                <line x1="60" y1="0" x2="60" y2="120" stroke="#1e293b" stroke-width="1.5"/>
+                                <line x1="0" y1="30" x2="120" y2="30" stroke="#1e293b" stroke-width="1"/>
+                                <line x1="0" y1="60" x2="120" y2="60" stroke="#1e293b" stroke-width="1"/>
+                                <line x1="0" y1="90" x2="120" y2="90" stroke="#1e293b" stroke-width="1"/>
+                                <rect x="0" y="0" width="60" height="30" fill="#94a3b8"/>
+                                <text x="60" y="142" font-size="14" font-weight="bold" fill="#0f172a" text-anchor="middle">Kertas D (1/8)</text>
+                            </g>
+                        </svg>`;
+                    break;
+                case 'hexagon_batik':
+                    svgHTML = `
+                        <div class="text-center font-semibold text-xs text-slate-600 mb-2">Visual Soal 11: Motif Ceplok Batik (Segi Banyak Beraturan 6 Sisi & 6 Titik Sudut)</div>
+                        <svg viewBox="0 0 350 260" class="w-full max-w-xs h-auto drop-shadow-md">
+                            <polygon points="175,20 285,75 285,185 175,240 65,185 65,75" fill="#fdf6e3" stroke="#854d0e" stroke-width="4"/>
+                            <polygon points="175,35 270,83 270,177 175,225 80,177 80,83" fill="#fef08a" stroke="#ca8a04" stroke-width="2"/>
+                            <circle cx="175" cy="130" r="35" fill="#ca8a04" opacity="0.3"/>
+                            <path d="M175,60 Q175,130 100,130 Q175,130 175,200 Q175,130 250,130 Q175,130 175,60 Z" fill="#854d0e" opacity="0.6"/>
+                            <circle cx="175" cy="130" r="12" fill="#713f12"/>
+                            <text x="175" y="255" font-size="11" font-weight="bold" fill="#854d0e" text-anchor="middle">6 Sisi Sama Panjang & 6 Titik Sudut</text>
+                        </svg>`;
+                    break;
+                case 'satellite':
+                    svgHTML = `
+                        <div class="text-center font-semibold text-xs text-slate-600 mb-2">Visual Soal 12: Model Rancangan Panel Surya Satelit</div>
+                        <svg viewBox="0 0 500 240" class="w-full max-w-lg h-auto drop-shadow-md">
+                            <polygon points="250,70 300,100 300,160 250,190 200,160 200,100" fill="#1e3a8a" stroke="#ffffff" stroke-width="3"/>
+                            <text x="250" y="134" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">Modul Pusat</text>
+                            <polygon points="250,15 210,70 290,70" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+                            <text x="250" y="55" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">Sensor Atas</text>
+                            <polygon points="250,245 210,190 290,190" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+                            <text x="250" y="208" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">Sensor Bawah</text>
+                            <g>
+                                <polygon points="190,90 140,130 190,130" fill="#1d4ed8" stroke="#ffffff" stroke-width="2"/>
+                                <polygon points="190,170 140,130 190,130" fill="#1d4ed8" stroke="#ffffff" stroke-width="2"/>
+                                <polygon points="140,130 80,130 140,90" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+                                <polygon points="140,130 80,130 140,170" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+                                <text x="130" y="134" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">Sayap Kiri</text>
+                            </g>
+                            <g>
+                                <polygon points="310,90 360,130 310,130" fill="#1d4ed8" stroke="#ffffff" stroke-width="2"/>
+                                <polygon points="310,170 360,130 310,130" fill="#1d4ed8" stroke="#ffffff" stroke-width="2"/>
+                                <polygon points="360,130 420,130 360,90" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+                                <polygon points="360,130 420,130 360,170" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+                                <text x="370" y="134" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">Sayap Kanan</text>
+                            </g>
+                        </svg>`;
+                    break;
+                case 'rectangle_card':
+                    svgHTML = `
+                        <div class="text-center font-semibold text-xs text-slate-600 mb-2">Visual Soal 14: Garis Lipatan Kartu Nama Persegi Panjang</div>
+                        <svg viewBox="0 0 400 200" class="w-full max-w-sm h-auto drop-shadow-md">
+                            <rect x="30" y="20" width="340" height="160" fill="#f8fafc" stroke="#0f172a" stroke-width="3"/>
+                            <line x1="200" y1="20" x2="200" y2="180" stroke="#ef4444" stroke-width="2" stroke-dasharray="6,4"/>
+                            <line x1="30" y1="100" x2="370" y2="100" stroke="#ef4444" stroke-width="2" stroke-dasharray="6,4"/>
+                            <line x1="30" y1="20" x2="370" y2="180" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,4"/>
+                            <line x1="30" y1="180" x2="370" y2="20" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,4"/>
+                            <text x="200" y="15" font-size="10" font-weight="bold" fill="#dc2626" text-anchor="middle">garis lipatan</text>
+                            <text x="200" y="105" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Kartu Nama Persegi Panjang</text>
+                            <text x="80" y="170" font-size="9" font-weight="bold" fill="#dc2626">diagonal crease line</text>
+                        </svg>`;
+                    break;
+                case 'kite':
+                    svgHTML = `
+                        <div class="text-center font-semibold text-xs text-slate-600 mb-2">Visual Soal 15: Sumbu Simetri Layang-Layang Tradisional</div>
+                        <svg viewBox="0 0 350 300" class="w-full max-w-xs h-auto drop-shadow-md">
+                            <polygon points="175,20 275,100 175,270 75,100" fill="#f1f5f9" stroke="#0f172a" stroke-width="3"/>
+                            <line x1="175" y1="10" x2="175" y2="280" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="6,4"/>
+                            <text x="180" y="18" font-size="12" font-weight="bold" fill="#dc2626">Garis p</text>
+                            <line x1="60" y1="100" x2="290" y2="100" stroke="#2563eb" stroke-width="2" stroke-dasharray="5,4"/>
+                            <text x="295" y="104" font-size="12" font-weight="bold" fill="#2563eb">Garis q</text>
+                            <line x1="90" y1="200" x2="260" y2="40" stroke="#059669" stroke-width="2" stroke-dasharray="4,4"/>
+                            <text x="265" y="35" font-size="12" font-weight="bold" fill="#059669">Garis r</text>
+                            <line x1="100" y1="40" x2="250" y2="40" stroke="#d97706" stroke-width="2" stroke-dasharray="4,4"/>
+                            <text x="90" y="38" font-size="12" font-weight="bold" fill="#d97706">Garis s</text>
+                            <text x="175" y="15" font-size="12" font-weight="black" fill="#0f172a" text-anchor="middle">A</text>
+                            <text x="285" y="105" font-size="12" font-weight="black" fill="#0f172a">B</text>
+                            <text x="175" y="285" font-size="12" font-weight="black" fill="#0f172a" text-anchor="middle">C</text>
+                            <text x="60" y="105" font-size="12" font-weight="black" fill="#0f172a">D</text>
+                        </svg>`;
+                    break;
+            }
+            svgBox.innerHTML = svgHTML;
+        }
+
+        // ==================== OPTIONS RENDERER ====================
+        function renderAnswerOptions(q) {
+            const container = document.getElementById('answer-options-container');
+            container.innerHTML = '';
+            const currentAns = userAnswers[q.id];
+
+            if (q.type === 'pg') {
+                const optionsDiv = document.createElement('div');
+                optionsDiv.className = 'space-y-2.5';
+                q.options.forEach(opt => {
+                    const isChecked = (currentAns === opt.id);
+                    const label = document.createElement('label');
+                    label.className = `flex items-center p-3.5 rounded-xl border transition cursor-pointer ${isChecked ? 'bg-blue-50 border-blue-500 text-blue-900 font-semibold shadow-sm' : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'}`;
+                    label.innerHTML = `<input type="radio" name="q_opt_${q.id}" value="${opt.id}" ${isChecked ? 'checked' : ''} onchange="saveSingleAnswer(${q.id}, '${opt.id}')" class="w-4 h-4 text-blue-600 border-slate-300 focus:ring-blue-500"><span class="ml-3 text-sm font-bold w-6 text-slate-500">${opt.id}.</span><span class="text-sm leading-snug">${opt.text}</span>`;
+                    optionsDiv.appendChild(label);
+                });
+                container.appendChild(optionsDiv);
+            } else if (q.type === 'mcma') {
+                const optionsDiv = document.createElement('div');
+                optionsDiv.className = 'space-y-2.5';
+                const selectedArr = Array.isArray(currentAns) ? currentAns : [];
+                q.options.forEach(opt => {
+                    const isChecked = selectedArr.includes(opt.id);
+                    const label = document.createElement('label');
+                    label.className = `flex items-start p-3.5 rounded-xl border transition cursor-pointer ${isChecked ? 'bg-purple-50 border-purple-500 text-purple-900 font-semibold shadow-sm' : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'}`;
+                    label.innerHTML = `<input type="checkbox" value="${opt.id}" ${isChecked ? 'checked' : ''} onchange="saveMcmaAnswer(${q.id}, '${opt.id}')" class="w-4 h-4 text-purple-600 rounded border-slate-300 focus:ring-purple-500 mt-0.5"><span class="ml-3 text-sm font-bold w-6 text-slate-500 mt-0.5">${opt.id}.</span><span class="text-sm leading-snug flex-1">${opt.text}</span>`;
+                    optionsDiv.appendChild(label);
+                });
+                container.appendChild(optionsDiv);
+            } else if (q.type === 'kategori') {
+                const headers = q.colHeaders || ['Benar', 'Salah'];
+                const selectedMap = (typeof currentAns === 'object' && !Array.isArray(currentAns)) ? currentAns : {};
+                const table = document.createElement('table');
+                table.className = 'w-full text-xs text-left border-collapse border border-slate-300 rounded-lg overflow-hidden shadow-sm';
+                let thead = `<thead><tr class="bg-amber-100/80 text-amber-950 font-bold border-b border-slate-300"><th class="p-3 border border-slate-300 w-12 text-center">No.</th><th class="p-3 border border-slate-300">Pernyataan / Analisis Kesimpulan</th><th class="p-3 border border-slate-300 w-24 text-center">${headers[0]}</th><th class="p-3 border border-slate-300 w-24 text-center">${headers[1]}</th></tr></thead>`;
+                let tbody = '<tbody>';
+                q.categories.forEach((catText, catIdx) => {
+                    const val = selectedMap[catIdx];
+                    tbody += `<tr class="border-b border-slate-200 hover:bg-amber-50/30 transition"><td class="p-3 border text-center font-bold text-slate-600">${catIdx + 1}</td><td class="p-3 border text-slate-800 font-medium leading-relaxed">${catText}</td><td class="p-3 border text-center bg-slate-50/50"><input type="radio" name="kat_${q.id}_${catIdx}" value="${headers[0]}" ${val === headers[0] ? 'checked' : ''} onchange="saveKategoriAnswer(${q.id}, ${catIdx}, '${headers[0]}')" class="w-4 h-4 text-emerald-600 border-slate-300 focus:ring-emerald-500"></td><td class="p-3 border text-center bg-slate-50/50"><input type="radio" name="kat_${q.id}_${catIdx}" value="${headers[1]}" ${val === headers[1] ? 'checked' : ''} onchange="saveKategoriAnswer(${q.id}, ${catIdx}, '${headers[1]}')" class="w-4 h-4 text-red-600 border-slate-300 focus:ring-red-500"></td></tr>`;
+                });
+                tbody += '</tbody>';
+                table.innerHTML = thead + tbody;
+                container.appendChild(table);
+            }
+        }
+
+        function saveSingleAnswer(qId, selectedOpt) { userAnswers[qId] = selectedOpt; loadQuestion(currentQuestionIndex); }
+        function saveMcmaAnswer(qId, optId) {
+            let selectedArr = Array.isArray(userAnswers[qId]) ? userAnswers[qId] : [];
+            userAnswers[qId] = selectedArr.includes(optId) ? selectedArr.filter(x => x !== optId) : [...selectedArr, optId];
+            loadQuestion(currentQuestionIndex);
+        }
+        function saveKategoriAnswer(qId, categoryIdx, chosenValue) {
+            let mapObj = (typeof userAnswers[qId] === 'object' && !Array.isArray(userAnswers[qId])) ? userAnswers[qId] : {};
+            mapObj[categoryIdx] = chosenValue;
+            userAnswers[qId] = mapObj;
+            updateQuestionGridButtons();
+        }
+
+        // ==================== SUBMISSION & GOOGLE SHEETS INTEGRATION ====================
+        function confirmSubmitExam() {
+            let answered = 0, doubtful = 0, unanswered = 0;
+            questionsData.forEach(q => {
+                if (doubtfulAnswers[q.id]) doubtful++;
+                if (checkIsAnswered(q.id)) answered++; else unanswered++;
+            });
+
+            document.getElementById('modal-answered-count').textContent = `${answered} Soal`;
+            document.getElementById('modal-doubtful-count').textContent = `${doubtful} Soal`;
+            document.getElementById('modal-unanswered-count').textContent = `${unanswered} Soal`;
+            document.getElementById('modal-submit').classList.remove('hidden');
+        }
+
+        function closeSubmitModal() { document.getElementById('modal-submit').classList.add('hidden'); }
+
+        function submitExamNow() {
+            clearInterval(timerInterval);
+            examFinished = true;
+            closeSubmitModal();
+
+            let totalCorrect = 0, totalWrong = 0, totalUnanswered = 0;
+
+            questionsData.forEach(q => {
+                const userAns = userAnswers[q.id];
+                if (!checkIsAnswered(q.id)) { totalUnanswered++; return; }
+
+                if (q.type === 'pg') {
+                    userAns === q.correct ? totalCorrect++ : totalWrong++;
+                } else if (q.type === 'mcma') {
+                    const userArr = Array.isArray(userAns) ? [...userAns].sort() : [];
+                    const correctArr = Array.isArray(q.correct) ? [...q.correct].sort() : [];
+                    JSON.stringify(userArr) === JSON.stringify(correctArr) ? totalCorrect++ : totalWrong++;
+                } else if (q.type === 'kategori') {
+                    const userMap = (typeof userAns === 'object' && !Array.isArray(userAns)) ? userAns : {};
+                    let allRowCorrect = true;
+                    q.categories.forEach((_, idx) => {
+                        if (userMap[idx] !== q.correct[idx]) allRowCorrect = false;
+                    });
+                    (allRowCorrect && Object.keys(userMap).length === q.categories.length) ? totalCorrect++ : totalWrong++;
+                }
+            });
+
+            const rawScore = (totalCorrect / questionsData.length) * 100;
+            const finalScore = rawScore.toFixed(1);
+
+            let grade = '';
+            let gradeClass = '';
+            if (rawScore >= 85) { grade = 'SANGAT MEMUASKAN (A)'; gradeClass = 'bg-emerald-900 text-emerald-200 border-emerald-500'; }
+            else if (rawScore >= 70) { grade = 'BAIK (B)'; gradeClass = 'bg-blue-900 text-blue-200 border-blue-500'; }
+            else if (rawScore >= 55) { grade = 'CUKUP (C)'; gradeClass = 'bg-amber-900 text-amber-200 border-amber-500'; }
+            else { grade = 'PERLU BINGBINGAN (D)'; gradeClass = 'bg-red-900 text-red-200 border-red-500'; }
+
+            document.getElementById('res-nama').textContent = participantInfo.nama || '-';
+            document.getElementById('res-lembaga').textContent = participantInfo.lembaga || '-';
+            document.getElementById('res-tgllahir').textContent = participantInfo.tglLahir || '-';
+            
+            const timeElapsedMins = Math.ceil((75 * 60 - timerSeconds) / 60);
+            const waktuPengerjaanStr = `${timeElapsedMins} Menit (Dari 75 Menit)`;
+            document.getElementById('res-waktu').textContent = waktuPengerjaanStr;
+            document.getElementById('res-score').textContent = finalScore;
+            
+            const gradeBadge = document.getElementById('res-grade-badge');
+            gradeBadge.textContent = grade;
+            gradeBadge.className = `inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border ${gradeClass}`;
+
+            document.getElementById('res-correct').textContent = totalCorrect;
+            document.getElementById('res-wrong').textContent = totalWrong;
+            document.getElementById('res-unanswered').textContent = totalUnanswered;
+
+            document.getElementById('exam-page').classList.add('hidden');
+            document.getElementById('result-page').classList.remove('hidden');
+
+            try {
+                if (document.fullscreenElement && document.exitFullscreen) {
+                    document.exitFullscreen().catch(() => {});
+                }
+            } catch (e) {}
+
+            // PROSES KIRIM DATA KE GOOGLE SHEETS
+            sendDataToGoogleSheets({
+                nama: participantInfo.nama,
+                lembaga: participantInfo.lembaga,
+                tglLahir: participantInfo.tglLahir,
+                nilai: finalScore,
+                predikat: grade,
+                benar: totalCorrect,
+                salah: totalWrong,
+                kosong: totalUnanswered,
+                waktuPengerjaan: waktuPengerjaanStr
+            });
+        }
+
+        function sendDataToGoogleSheets(payload) {
+            const statusElem = document.getElementById('res-sync-status');
+            if (statusElem) statusElem.textContent = 'Mengirim data...';
+
+            if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL === "PASTE_URL_GOOGLE_APPS_SCRIPT_DI_SINI") {
+                if (statusElem) statusElem.textContent = 'URL Script Belum Diisi';
+                return;
+            }
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                if (statusElem) statusElem.textContent = 'Tersimpan di Sheets';
+            })
+            .catch(err => {
+                console.error('Gagal menyimpan ke Google Sheets:', err);
+                if (statusElem) statusElem.textContent = 'Gagal Tersimpan';
+            });
+        }
+    </script>
+</body>
+</html>
